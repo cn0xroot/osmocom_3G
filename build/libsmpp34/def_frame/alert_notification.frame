@@ -1,0 +1,7 @@
+    U08( instancia, source_addr_ton, str_addr_ton );
+    U08( instancia, source_addr_npi, str_addr_npi );
+C_OCTET( instancia, source_addr, 65 );
+    U08( instancia, esme_addr_ton, str_addr_ton );
+    U08( instancia, esme_addr_npi, str_addr_npi );
+C_OCTET( instancia, esme_addr, 65 );
+    TLV( instancia, tlv, do_tlv_alert_notification );

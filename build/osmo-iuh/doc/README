@@ -1,0 +1,2 @@
+sudo apt-get install mscgen
+mscgen -T svg hnb_cs_lu.msc

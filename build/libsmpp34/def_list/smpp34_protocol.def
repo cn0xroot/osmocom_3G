@@ -1,0 +1,107 @@
+    if( type == BIND_TRANSMITTER ){
+        bind_transmitter_t *t1 = (bind_transmitter_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/bind_transmitter.frame"
+    } else if( type == BIND_TRANSMITTER_RESP ){
+        bind_transmitter_resp_t *t1 = (bind_transmitter_resp_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/bind_transmitter_resp.frame"
+    } else if( type == BIND_RECEIVER ){
+        bind_receiver_t *t1 = (bind_receiver_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/bind_receiver.frame"
+    } else if( type == BIND_RECEIVER_RESP ){
+        bind_receiver_resp_t *t1 = (bind_receiver_resp_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/bind_receiver_resp.frame"
+    } else if( type == BIND_TRANSCEIVER ){
+        bind_transceiver_t *t1 = (bind_transceiver_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/bind_transceiver.frame"
+    } else if( type == BIND_TRANSCEIVER_RESP ){
+        bind_transceiver_resp_t *t1 = (bind_transceiver_resp_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/bind_transceiver_resp.frame"
+    } else if( type == OUTBIND ){
+        outbind_t *t1 = (outbind_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/outbind.frame"
+    } else if( type == UNBIND ){
+        unbind_t *t1 = (unbind_t*)tt;
+        #include "def_frame/header.frame"
+    } else if( type == UNBIND_RESP ){
+        unbind_resp_t *t1 = (unbind_resp_t*)tt;
+        #include "def_frame/header.frame"
+    } else if( type == GENERIC_NACK ){
+        generic_nack_t *t1 = (generic_nack_t*)tt;
+        #include "def_frame/header.frame"
+    } else if( type == SUBMIT_SM ){
+        submit_sm_t *t1 = (submit_sm_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/submit_sm.frame"
+    } else if( type == SUBMIT_SM_RESP ){
+        submit_sm_resp_t *t1 = (submit_sm_resp_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/submit_sm_resp.frame"
+    } else if( type == SUBMIT_MULTI ){
+        submit_multi_t *t1 = (submit_multi_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/submit_multi.frame"
+    } else if( type == SUBMIT_MULTI_RESP ){
+        submit_multi_resp_t *t1 = (submit_multi_resp_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/submit_multi_resp.frame"
+    } else if( type == DELIVER_SM ){
+        deliver_sm_t *t1 = (deliver_sm_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/deliver_sm.frame"
+    } else if( type == DELIVER_SM_RESP ){
+        deliver_sm_resp_t *t1 = (deliver_sm_resp_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/deliver_sm_resp.frame"
+    } else if( type == DATA_SM ){
+        data_sm_t *t1 = (data_sm_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/data_sm.frame"
+    } else if( type == DATA_SM_RESP ){
+        data_sm_resp_t *t1 = (data_sm_resp_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/data_sm_resp.frame"
+    } else if( type == QUERY_SM ){
+        query_sm_t *t1 = (query_sm_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/query_sm.frame"
+    } else if( type == QUERY_SM_RESP ){
+        query_sm_resp_t *t1 = (query_sm_resp_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/query_sm_resp.frame"
+    } else if( type == CANCEL_SM ){
+        cancel_sm_t *t1 = (cancel_sm_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/cancel_sm.frame"
+    } else if( type == CANCEL_SM_RESP ){
+        cancel_sm_resp_t *t1 = (cancel_sm_resp_t*)tt;
+        #include "def_frame/header.frame"
+    } else if( type == REPLACE_SM ){
+        replace_sm_t *t1 = (replace_sm_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/replace_sm.frame"
+    } else if( type == REPLACE_SM_RESP ){
+        replace_sm_resp_t *t1 = (replace_sm_resp_t*)tt;
+        #include "def_frame/header.frame"
+    } else if( type == ENQUIRE_LINK ){
+        enquire_link_t *t1 = (enquire_link_t*)tt;
+        #include "def_frame/header.frame"
+    } else if( type == ENQUIRE_LINK_RESP ){
+        enquire_link_resp_t *t1 = (enquire_link_resp_t*)tt;
+        #include "def_frame/header.frame"
+    } else if( type == ALERT_NOTIFICATION ){
+        alert_notification_t *t1 = (alert_notification_t*)tt;
+        #include "def_frame/header.frame"
+        #include "def_frame/alert_notification.frame"
+    } else {
+        PUTLOG("[%s:%08X(%s)]", type, type, "Invalid command_id");
+        return( -1 );
+    };
+
+

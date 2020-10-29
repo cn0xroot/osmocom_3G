@@ -1,0 +1,25 @@
+msc {
+	hscale="3", wordwraparcs="1";
+	ue,hnb,hnbgw,sgsn,ggsn;
+
+	ue box hnb	[ label = "Radio Channel Establishment, possibly already done by IMSI ATTACH / RAU" ];
+	ue => hnb	[ label = "RRC (SM PDP CTX ACT REQ)" ];
+	hnb => hnbgw 	[ label = "RUA DT (RANAP DirectTransfer (SM PDP CTX ACT REQ))" ];
+	hnbgw => sgsn	[ label = "SCCP DT1 (RANAP DirectTransfer (SM PDP CTX ACT REQ))" ];
+
+	sgsn => ggsn	[ label = "GTP-C PDP CTX ACT REQ" ];
+	ggsn >> sgsn	[ label = "GTP-C PDP CTX ACT ACK (IP+TEI of GGSN)" ];
+
+	sgsn => hnbgw	[ label = "SCCP DT1 (RANAP Activate RAB Req (IP+TEI of GGSN)" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP Activate RAB Req (IP+TEI of GGSN)" ];
+	hnb box ue	[ label = "RAB Establishment" ];
+	hnb >> hnbgw	[ label = "RUA DT (RANAP Activate RAB Resp (IP + TEI of HNB)" ];
+	hnbgw >> sgsn	[ label = "SCCP DT1 (RANAP Activate RAB Resp (IP + TEI of HNB)" ];
+
+	sgsn => ggsn	[ label = "GTP-C PDP CTX MOD REQ (IP + TEI of HNB)" ];
+	ggsn >> sgsn	[ label = "GTP-C PDP CTX MOD RESP" ];
+
+	sgsn >> hnbgw	[ label = "SCCP DT1 (RANAP DirectTransfer (SM PDP CTX ACT ACK))" ];
+	hnbgw >> hnb	[ label = "RUA DT (RANAP DirectTransfer (SM PDP CTX ACT ACK))" ];
+	hnb >> ue	[ label = "RRC (SM PDP CTX ACT ACK))" ];
+}

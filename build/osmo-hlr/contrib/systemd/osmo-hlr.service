@@ -1,0 +1,11 @@
+[Unit]
+Description=Osmocom Home Location Register (OsmoHLR)
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/osmo-hlr -c /etc/osmocom/osmo-hlr.cfg -l /var/lib/osmocom/hlr.db
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

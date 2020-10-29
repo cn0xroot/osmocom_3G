@@ -1,0 +1,308 @@
+AC_INIT([libosmocore],
+	m4_esyscmd([./git-version-gen .tarball-version]),
+	[openbsc@lists.osmocom.org])
+
+dnl *This* is the root dir, even if an install-sh exists in ../ or ../../
+AC_CONFIG_AUX_DIR([.])
+
+AM_INIT_AUTOMAKE([foreign dist-bzip2 no-dist-gzip 1.6 subdir-objects])
+AC_CONFIG_TESTDIR(tests)
+
+dnl kernel style compile messages
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+
+dnl checks for programs
+AC_PROG_MAKE_SET
+AC_PROG_MKDIR_P
+AC_PROG_CC
+AC_PROG_INSTALL
+LT_INIT([pic-only disable-static])
+
+AC_CONFIG_MACRO_DIR([m4])
+
+dnl check for pkg-config
+dnl * If pkg-config is missing, we get a "syntax error" for PKG_CHECK_MODULES.
+dnl   Instead, we want to say that pkg-config and pkg.m4 are missing.
+dnl * The proper way is PKG_PROG_PKG_CONFIG() but unfortunately that does not
+dnl   produce an intelligible error message if pkg-config is missing entirely
+dnl   ("syntax error near unexpected token `0.20'").
+dnl * To produce a hint that pkg-config is missing, check for the pkg-config
+dnl   binary; but AC_PATH_PROG breaks if the distribution provides only
+dnl   prefixed (<arch>-pkg-config) versions, so just print a warning.
+AC_PATH_PROG(PKG_CONFIG_INSTALLED, pkg-config, no)
+if test "x$PKG_CONFIG_INSTALLED" = "xno"; then
+        AC_MSG_WARN([You need to install pkg-config])
+fi
+PKG_PROG_PKG_CONFIG([0.20])
+
+dnl check os: some linker flags not available on osx
+case $host in
+*-darwin*)
+	;;
+*)
+	LTLDFLAGS_OSMOGB='-Wl,--version-script=$(srcdir)/libosmogb.map'
+	LTLDFLAGS_OSMOGSM='-Wl,--version-script=$(srcdir)/libosmogsm.map'
+	LTLDFLAGS_OSMOCODING='-Wl,--version-script=$(srcdir)/libosmocoding.map'
+	;;
+esac
+AC_SUBST(LTLDFLAGS_OSMOGB)
+AC_SUBST(LTLDFLAGS_OSMOGSM)
+
+dnl checks for header files
+AC_HEADER_STDC
+AC_CHECK_HEADERS(execinfo.h sys/select.h sys/socket.h syslog.h ctype.h netinet/tcp.h)
+# for src/conv.c
+AC_FUNC_ALLOCA
+AC_SEARCH_LIBS([dlopen], [dl dld], [LIBRARY_DL="$LIBS";LIBS=""])
+AC_SUBST(LIBRARY_DL)
+# for src/backtrace.c
+AC_CHECK_LIB(execinfo, backtrace, BACKTRACE_LIB=-lexecinfo, BACKTRACE_LIB=)
+AC_SUBST(BACKTRACE_LIB)
+
+AC_PATH_PROG(DOXYGEN,doxygen,false)
+AM_CONDITIONAL(HAVE_DOXYGEN, test $DOXYGEN != false)
+
+# The following test is taken from WebKit's webkit.m4
+saved_CFLAGS="$CFLAGS"
+CFLAGS="$CFLAGS -fvisibility=hidden "
+AC_MSG_CHECKING([if ${CC} supports -fvisibility=hidden])
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([char foo;])],
+      [ AC_MSG_RESULT([yes])
+        SYMBOL_VISIBILITY="-fvisibility=hidden"],
+        AC_MSG_RESULT([no]))
+CFLAGS="$saved_CFLAGS"
+AC_SUBST(SYMBOL_VISIBILITY)
+
+AC_DEFUN([CHECK_TM_INCLUDES_TM_GMTOFF], [
+  AC_CACHE_CHECK(
+    [whether struct tm has tm_gmtoff member],
+    osmo_cv_tm_includes_tm_gmtoff,
+    [AC_LINK_IFELSE([
+      AC_LANG_PROGRAM([
+        #include <time.h>
+      ], [
+        time_t t = time(NULL);
+        struct tm* lt = localtime(&t);
+        int off = lt->tm_gmtoff;
+      ])
+    ],
+    osmo_cv_tm_includes_tm_gmtoff=yes,
+    osmo_cv_tm_includes_tm_gmtoff=no
+    )]
+  )
+  if test "x$osmo_cv_tm_includes_tm_gmtoff" = xyes; then
+    AC_DEFINE(HAVE_TM_GMTOFF_IN_TM, 1,
+              [Define if struct tm has tm_gmtoff member.])
+  fi
+])
+
+CHECK_TM_INCLUDES_TM_GMTOFF
+
+dnl Generate the output
+AC_CONFIG_HEADER(config.h)
+
+PKG_CHECK_MODULES(TALLOC, [talloc >= 2.0.1])
+
+AC_ARG_ENABLE([pcsc], [AS_HELP_STRING([--disable-pcsc], [Build without PC/SC support])],
+    [
+        ENABLE_PCSC=$enableval
+    ],
+    [
+        ENABLE_PCSC="yes"
+    ])
+AS_IF([test "x$ENABLE_PCSC" = "xyes"], [
+	PKG_CHECK_MODULES(PCSC, libpcsclite)
+])
+AM_CONDITIONAL(ENABLE_PCSC, test "x$ENABLE_PCSC" = "xyes")
+AC_SUBST(ENABLE_PCSC)
+
+AC_ARG_ENABLE(plugin,
+	[AS_HELP_STRING(
+		[--disable-plugin],
+		[Disable support for dlopen plugins],
+	)],
+	[enable_plugin=$enableval], [enable_plugin="yes"])
+AM_CONDITIONAL(ENABLE_PLUGIN, test x"$enable_plugin" = x"yes")
+
+AC_ARG_ENABLE(vty,
+	[AS_HELP_STRING(
+		[--disable-vty],
+		[Disable building VTY telnet interface]
+	)],
+	[enable_vty=$enableval], [enable_vty="yes"])
+AM_CONDITIONAL(ENABLE_VTY, test x"$enable_vty" = x"yes")
+
+AC_ARG_ENABLE(panic_infloop,
+	[AS_HELP_STRING(
+		[--enable-panic-infloop],
+		[Trigger infinite loop on panic rather than fprintf/abort]
+	)],
+	[panic_infloop=$enableval], [panic_infloop="no"])
+if test x"$panic_infloop" = x"yes"
+then
+	AC_DEFINE([PANIC_INFLOOP],[1],[Use infinite loop on panic rather than fprintf/abort])
+fi
+
+AC_ARG_ENABLE(bsc_fd_check,
+	[AS_HELP_STRING(
+		[--enable-bsc-fd-check],
+		[Instrument bsc_register_fd to check that the fd is registered]
+	)],
+	[fd_check=$enableval], [fd_check="no"])
+if test x"$fd_check" = x"no"
+then
+	AC_DEFINE([BSC_FD_CHECK],[1],[Instrument the bsc_register_fd])
+fi
+
+AC_ARG_ENABLE(msgfile,
+	[AS_HELP_STRING(
+		[--disable-msgfile],
+		[Disable support for the msgfile],
+	)],
+	[enable_msgfile=$enableval], [enable_msgfile="yes"])
+AM_CONDITIONAL(ENABLE_MSGFILE, test x"$enable_msgfile" = x"yes")
+
+AC_ARG_ENABLE(serial,
+	[AS_HELP_STRING(
+		[--disable-serial],
+		[Disable support for the serial helpers],
+	)],
+	[enable_serial=$enableval], [enable_serial="yes"])
+AM_CONDITIONAL(ENABLE_SERIAL, test x"$enable_serial" = x"yes")
+
+AC_ARG_ENABLE(utilities,
+        [AS_HELP_STRING(
+                [--disable-utilities],
+                [Disable building utility programs],
+        )],
+        [enable_utilities=$enableval], [enable_utilities="yes"])
+AM_CONDITIONAL(ENABLE_UTILITIES, test x"$enable_utilities" = x"yes")
+
+AC_ARG_ENABLE(gb,
+        [AS_HELP_STRING(
+                [--disable-gb],
+                [Disable building Gb library],
+        )],
+        [enable_gb=$enableval], [enable_gb="yes"])
+AM_CONDITIONAL(ENABLE_GB, test x"$enable_gb" = x"yes")
+
+AC_ARG_ENABLE(ctrl,
+        [AS_HELP_STRING(
+                [--disable-ctrl],
+                [Disable building CTRL library],
+        )],
+        [enable_ctrl=$enableval], [enable_ctrl="yes"])
+AM_CONDITIONAL(ENABLE_CTRL, test x"$enable_ctrl" = x"yes")
+
+AC_ARG_ENABLE(pseudotalloc,
+        [AS_HELP_STRING(
+                [--enable-pseudotalloc],
+                [Enable building pseudotalloc library],
+        )],
+        [enable_pseudotalloc=$enableval], [enable_pseudotalloc="no"])
+AM_CONDITIONAL(ENABLE_PSEUDOTALLOC, test x"$enable_pseudotalloc" = x"yes")
+
+AC_ARG_ENABLE(embedded,
+	[AS_HELP_STRING(
+		[--enable-embedded],
+		[Enable building for embedded use and disable unsupported features]
+	)],
+	[embedded=$enableval], [embedded="no"])
+if test x"$embedded" = x"yes"
+then
+	AC_DEFINE([EMBEDDED],[1],[Select building for embedded use])
+	AM_CONDITIONAL(ENABLE_PLUGIN, false)
+	AM_CONDITIONAL(ENABLE_MSGFILE, false)
+	AM_CONDITIONAL(ENABLE_SERIAL, false)
+	AM_CONDITIONAL(ENABLE_VTY, false)
+	AM_CONDITIONAL(ENABLE_CTRL, false)
+	AM_CONDITIONAL(ENABLE_UTILITIES, false)
+	AM_CONDITIONAL(ENABLE_GB, false)
+	AM_CONDITIONAL(ENABLE_PCSC, false)
+	AM_CONDITIONAL(ENABLE_PSEUDOTALLOC, true)
+	AC_DEFINE([PANIC_INFLOOP],[1],[Use infinite loop on panic rather than fprintf/abort])
+fi
+
+AC_ARG_ENABLE(sanitize,
+	[AS_HELP_STRING(
+		[--enable-sanitize],
+		[Compile with address sanitizer enabled],
+	)],
+	[sanitize=$enableval], [sanitize="no"])
+if test x"$sanitize" = x"yes"
+then
+	CFLAGS+=" -fsanitize=address -fsanitize=undefined"
+	CPPFLAGS+=" -fsanitize=address -fsanitize=undefined"
+fi
+
+AC_ARG_ENABLE(simd,
+	[AS_HELP_STRING(
+		[--disable-simd],
+		[Disable SIMD support]
+	)],
+	[simd=$enableval], [simd="yes"])
+if test x"$simd" = x"yes"
+then
+	# Find and define supported SIMD extensions
+	AX_CHECK_SIMD
+else
+	AM_CONDITIONAL(HAVE_AVX2, false)
+	AM_CONDITIONAL(HAVE_SSE3, false)
+	AM_CONDITIONAL(HAVE_SSE4_1, false)
+fi
+
+dnl Check if the compiler supports specified GCC's built-in function
+AC_DEFUN([CHECK_BUILTIN_SUPPORT], [
+  AC_CACHE_CHECK(
+    [whether ${CC} has $1 built-in],
+    [osmo_cv_cc_has_builtin], [
+      AC_LINK_IFELSE([
+        AC_LANG_PROGRAM([], [
+          __builtin_cpu_supports("sse");
+        ])
+      ],
+      [AS_VAR_SET([osmo_cv_cc_has_builtin], [yes])],
+      [AS_VAR_SET([osmo_cv_cc_has_builtin], [no])])
+    ]
+  )
+
+  AS_IF([test yes = AS_VAR_GET([osmo_cv_cc_has_builtin])], [
+    AC_DEFINE_UNQUOTED(AS_TR_CPP(HAVE_$1), 1,
+      [Define to 1 if compiler has the '$1' built-in function])
+  ], [
+    AC_MSG_WARN($2)
+  ])
+])
+
+dnl Check if the compiler supports runtime SIMD detection
+CHECK_BUILTIN_SUPPORT([__builtin_cpu_supports],
+  [Runtime SIMD detection will be disabled])
+
+AC_OUTPUT(
+	libosmocore.pc
+	libosmocodec.pc
+	libosmocoding.pc
+	libosmovty.pc
+	libosmogsm.pc
+	libosmogb.pc
+	libosmoctrl.pc
+	libosmosim.pc
+	include/Makefile
+	src/Makefile
+	src/vty/Makefile
+	src/codec/Makefile
+	src/coding/Makefile
+	src/sim/Makefile
+	src/gsm/Makefile
+	src/gb/Makefile
+	src/ctrl/Makefile
+	src/pseudotalloc/Makefile
+	tests/Makefile
+	tests/atlocal
+	utils/Makefile
+	Doxyfile.core
+	Doxyfile.gsm
+	Doxyfile.vty
+	Doxyfile.codec
+	Doxyfile.coding
+	Makefile)

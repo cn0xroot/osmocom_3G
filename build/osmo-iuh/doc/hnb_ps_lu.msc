@@ -1,0 +1,45 @@
+msc {
+	hscale = "3";
+	ue,hnb,hnbgw,cn;
+
+	ue box hnb	[ label = "Radio Channel Establishment" ];
+	ue => hnb 	[ label = "RRC (GMM IMSI ATTACH REQ)" ] ;
+	hnb => hnbgw 	[ label = "RUA CONNECT (RANAP Initial UE Msg (GMM IMSI ATTACH REQ))" ];
+	hnbgw => cn	[ label = "SCCP CR (RANAP Initial UE Msg (GMM IMSI ATTACH REQ))" ];
+	cn >> hnbgw	[ label = "SCCP CC" ];
+
+	---		[ label = "Optional retrieval of IMSI (if not given in LU or retrived from VLR by TMSI)" ];
+	cn => hnbgw	[ label = "SCCP DT1 (RANAP DirectTransfer (GMM IDENTITY REQ))" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP DirectTransfer (GMM IDENTITY REQ))" ];
+	hnb => ue	[ label = "RRC (GMM IDENTITY REQ)" ];
+	ue >> hnb	[ label = "RRC (GMM IDENTITY RESP)" ];
+	hnb >> hnbgw	[ label = "RUA DT (RANAP DirectTransfer (GMM IDENTITY RESP))" ];
+	hnbgw >> cn	[ label = "SCCP DT1 (RANAP DirectTransfer (GMM IDENTITY RESP))" ];
+
+	---		[ label = "Mandatory activation of Integrity Protection" ];
+	cn => hnbgw	[ label = "SCCP DT1 (RANAP SecurityModeCommand (IK))" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP SecurityModeCommand (IK))" ];
+	hnb >> hnbgw	[ label = "RUA DT (RANAP SecurityModeResponse (IK))" ];
+	hnbgw >> cn	[ label = "SCCP DT1 (RANAP SecurityModeResponse (IK))" ];
+
+	cn => hnbgw	[ label = "SCCP DT1 (RANAP CommonID)" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP CommonID)" ];
+
+	---		[ label = "Optional Authentication" ];
+	cn => hnbgw	[ label = "SCCP DT1 (RANAP DirectTransfer (GMM AUTH REQ))" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP DirectTransfer (GMM AUTH REQ))" ];
+	hnb => ue	[ label = "RRC (GMM AUTH REQ)" ];
+	ue >> hnb	[ label = "RRC (GMM AUTH RESP)" ];
+	hnb >> hnbgw	[ label = "RUA DT (RANAP DirectTransfer (GMM AUTH RESP))" ];
+	hnbgw >> cn	[ label = "SCCP DT1 (RANAP DirectTransfer (GMM AUTH RESP))" ];
+
+	---		[ label = "Optional activation of Encryption" ];
+	cn => hnbgw	[ label = "SCCP DT1 (RANAP SecurityModeCommand (IK+CK))" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP SecurityModeCommand (IK+CK))" ];
+	hnb >> hnbgw	[ label = "RUA DT (RANAP SecurityModeResponse (IK+CK))" ];
+	hnbgw >> cn	[ label = "SCCP DT1 (RANAP SecurityModeResponse (IK+CK))" ];
+
+	cn >> hnbgw	[ label = "SCCP DT1 (RANAP DirectTransfer (GMM IMSI ATTACH ACC))" ];
+	hnbgw >> hnb	[ label = "RUA DT (RANAP DirectTransfer (GMM IMSI ATTACH ACC))" ];
+	hnb >> ue	[ label = "RRC (GMM IMSI ATTACH ACC)" ];
+}

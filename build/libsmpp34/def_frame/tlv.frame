@@ -1,0 +1,4 @@
+U16( instancia, tag   , valueDec_16 );
+U16( instancia, length, valueDec_16 );
+UUU( instancia, value, MAX_TLV_SIZE ); /* max long TLV-octet = 1024 */
+TLV( instancia, next, do_tlv );

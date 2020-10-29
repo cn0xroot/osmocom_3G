@@ -1,0 +1,7 @@
+OPERACION( TON_Unknown           )
+OPERACION( TON_International     )
+OPERACION( TON_National          )
+OPERACION( TON_Network_Specific  )
+OPERACION( TON_Subscriber_Number )
+OPERACION( TON_Alphanumeric      )
+OPERACION( TON_Abbreviated       )

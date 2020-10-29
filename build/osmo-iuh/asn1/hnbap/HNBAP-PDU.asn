@@ -1,0 +1,146 @@
+HNBAP-PDU {
+itu-t (0) identified-organization (4) etsi (0) mobileDomain (0) 
+umts-Access (20) modules (3) hnbap(6) version1 (1) hnbap-PDU (255) }
+
+DEFINITIONS AUTOMATIC TAGS ::=
+
+BEGIN
+
+IMPORTS
+    maxProtocolIEs,
+    Criticality,
+    ProcedureCode,
+    ProtocolIE-ID
+
+FROM HNBAP-CommonDataTypes;
+
+
+HNBAP-PDU ::= CHOICE {
+    initiatingMessage       InitiatingMessage,
+    successfulOutcome       SuccessfulOutcome,
+    unsuccessfulOutcome     UnsuccessfulOutcome,
+    ...
+}
+
+InitiatingMessage ::= SEQUENCE {
+    procedureCode   ProcedureCode,
+    criticality     Criticality,
+    value           ANY
+}
+
+SuccessfulOutcome ::= SEQUENCE {
+    procedureCode   ProcedureCode,
+    criticality     Criticality,
+    value           ANY
+}
+
+UnsuccessfulOutcome ::= SEQUENCE {
+    procedureCode   ProcedureCode,
+    criticality     Criticality,
+    value           ANY
+}
+
+
+HNBRegisterRequest ::= SEQUENCE {
+    hnbRegisterRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+HNBRegisterAccept ::= SEQUENCE {
+    hnbRegisterAccept-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+HNBRegisterReject ::= SEQUENCE {
+    hnbRegisterReject-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+UERegisterRequest ::= SEQUENCE {
+    ueRegisterRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+UERegisterAccept ::= SEQUENCE {
+    ueRegisterAccept-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+UERegisterReject ::= SEQUENCE {
+    ueRegisterReject-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+UEDe-Register ::= SEQUENCE {
+    ueDe-Register-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+HNBDe-Register ::= SEQUENCE {
+    hnbDe-Register-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+ErrorIndication ::= SEQUENCE {
+    errorIndication-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+CSGMembershipUpdate ::= SEQUENCE {
+    csgMembershipUpdate-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+TNLUpdateRequest ::= SEQUENCE {
+    tnlUpdateRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+TNLUpdateResponse ::= SEQUENCE {
+    tnlUpdateResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+TNLUpdateFailure ::= SEQUENCE {
+    tnlUpdateFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+HNBConfigTransferRequest ::= SEQUENCE {
+    hnbConfigTransferRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+HNBConfigTransferResponse ::= SEQUENCE {
+    hnbConfigTransferResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationComplete ::= SEQUENCE {
+    relocationComplete-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+U-RNTIQueryRequest ::= SEQUENCE {
+    u-RNTIQueryRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+U-RNTIQueryResponse ::= SEQUENCE {
+    u-RNTIQueryResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+PrivateMessage ::= SEQUENCE {
+    privateMessage-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+
+IE ::= SEQUENCE {
+    id ProtocolIE-ID,
+    criticality Criticality,
+    value ANY
+}
+
+END

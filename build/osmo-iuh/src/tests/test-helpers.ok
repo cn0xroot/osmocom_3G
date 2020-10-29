@@ -1,0 +1,25 @@
+Testing Iu helper functions
+pre-encoded: 10325476f8
+decoded: 012345678
+re-encoded: 10325476f8
+Testing asn.1 helper functions
+Encoding 0xdeadbeef to asn.1 bitstring
+Encoded: 20deadbeef
+Decoding back to uint32_t: 0xdeadbeef
+Encoding efbead to 24-bit asn.1 bitstring
+Encoded: 18adbeef
+Decoding string from asn.1: 0123456789012345
+Decoding large string from asn1: 0123456789012345678901234567890
+Testing ranap common functions
+PLMN-Id [ 21 f3 54 ], LAC [ ab cd ]
+ rc == 0
+ mcc == 123 mnc == 45
+ lac == 0xabcd
+PLMN-Id [ 21 43 65 ], LAC [ ab cd ]
+ rc == 0
+ mcc == 123 mnc == 456
+ lac == 0xabcd
+PLMN-Id [ 21 43 ], LAC [ ab cd ]
+ rc == -1
+PLMN-Id [ 21 43 65 ], LAC [ ab ]
+ rc == -1

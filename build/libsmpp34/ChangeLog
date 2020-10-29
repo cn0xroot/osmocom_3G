@@ -1,0 +1,31 @@
+=== smpp34-1.9 ===
+2007-06-04  Raul Tremsal  <ultraismo@yahoo.com>
+	* Fix some warnings in compilations with gcc-4.x
+	* Fix some mistakes in frame definitions (bind_*_resp.frame)
+	* def_frame/bind_*_resp.frame: fix internal call to do_tlv. 
+
+
+=== smpp34-beta-1.8.1 ===
+2006-11-24  Raul Tremsal  <ultraismo@yahoo.com>
+	* Change from GPL to LGPL licence.
+
+
+=== smpp34-beta-1.8 ===
+2006-10-30  Raul Tremsal  <ultraismo@yahoo.com>
+	* We solve SUBMIT_MULTI problem.
+
+
+=== smpp34-1.7 ===
+2006-06-01  Raul Tremsal  <ultraismo@yahoo.com>
+	* Initial release-1.7 in Source Forge. I've added a small ESME
+	* We add documentation and get up http://c-open-smpp-34.sourceforge.net/
+
+
+=== smpp34-1.5 ===
+2006-05-25  Raul Tremsal  <ultraismo@yahoo.com>
+	* Build version for initial release-1.5
+
+2006-03-14  Raul Tremsal  <ultraismo@yahoo.com>
+	* src/Makefile.am: updated.
+	* src/smpp34_structs.c: split internal functions in smpp34_dumpBuf.c, 
+	                    smpp34_dumpPdu.c, smpp34_pack.c and smpp34_unpack.c

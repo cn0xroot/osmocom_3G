@@ -1,0 +1,5 @@
+#define do_udad( inst_udad )\
+    U08( inst_udad-> , dest_addr_ton, str_addr_ton );\
+    U08( inst_udad-> , dest_addr_npi, str_addr_npi );\
+C_OCTET( inst_udad-> , destination_addr, 21 );\
+    U32( inst_udad-> , error_status_code, valueDec_08 );

@@ -1,0 +1,3 @@
+C_OCTET( instancia, message_id, 65 );
+    U08( instancia, no_unsuccess, valueDec_08 );
+   UDAD( instancia, unsuccess_smes, do_udad );

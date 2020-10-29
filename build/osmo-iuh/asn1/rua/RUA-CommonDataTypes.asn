@@ -1,0 +1,62 @@
+-- **************************************************************
+--
+-- Common definitions
+--
+-- **************************************************************
+
+RUA-CommonDataTypes {
+itu-t (0) identified-organization (4) etsi (0) mobileDomain (0) 
+umts-Access (20) modules (3) rua(5) version1 (1) rUA-CommonDataTypes (3)  }
+
+DEFINITIONS AUTOMATIC TAGS ::= 
+
+BEGIN
+
+-- **************************************************************
+--
+-- Extension constants
+--
+-- **************************************************************
+
+maxPrivateIEs 		INTEGER ::= 65535
+maxProtocolExtensions 	INTEGER ::= 65535
+maxProtocolIEs		INTEGER ::= 65535
+
+-- **************************************************************
+--
+-- Common Data Types
+--
+-- **************************************************************
+Criticality		::= ENUMERATED { reject, ignore, notify }
+
+Presence		::= ENUMERATED { optional, conditional, mandatory }
+
+
+ProcedureCode		::= INTEGER {
+	id-Connect(1),
+	id-DirectTransfer(2),
+	id-Disconnect(3),
+	id-ConnectionlessTransfer(4),
+	id-ErrorIndication(5),
+	id-privateMessage(6)
+} (0..255)
+
+PrivateIE-ID	::= CHOICE {
+	local		INTEGER (0..65535),
+	global		OBJECT IDENTIFIER
+}
+
+ProtocolIE-ID		::= INTEGER {
+	id-Cause(1),
+	id-CriticalityDiagnostics(2),
+	id-Context-ID(3),
+	id-RANAP-Message(4),
+	id-IntraDomainNasNodeSelector(5),
+	id-Establishment-Cause(6),
+	id-CN-DomainIndicator(7),
+	id-CSGMembershipStatus(9)
+} (0..maxProtocolIEs)
+
+TriggeringMessage	::= ENUMERATED { initiating-message, successful-outcome, unsuccessful-outcome }
+
+END

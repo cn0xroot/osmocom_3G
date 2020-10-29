@@ -1,0 +1,10 @@
+C_OCTET( instancia, message_id, 65 );
+    U08( instancia, source_addr_ton, str_addr_ton );
+    U08( instancia, source_addr_npi, str_addr_npi );
+C_OCTET( instancia, source_addr, 21 );
+C_OCTET( instancia, schedule_delivery_time, 17 );
+C_OCTET( instancia, validity_period, 17 );
+    U08( instancia, registered_delivery, valueDec_08 );
+    U08( instancia, sm_default_msg_id, valueDec_08 );
+    U08( instancia, sm_length, valueDec_08 );
+ OCTET8( instancia, short_message, 254 );

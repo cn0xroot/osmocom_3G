@@ -1,0 +1,222 @@
+Encoded MaxBitRate 1 to 00 00 
+Encoded MaxBitRate 2 to 00 01 
+Encoded MaxBitRate 3 to 00 02 
+Encoded MaxBitRate 255 to 00 fe 
+Encoded MaxBitRate 256 to 00 ff 
+Encoded MaxBitRate 257 to 40 01 00 
+Encoded MaxBitRate 64000 to 40 f9 ff 
+Encoded MaxBitRate 65535 to 40 ff fe 
+Encoded MaxBitRate 65536 to 40 ff ff 
+Encoded MaxBitRate 65537 to 80 01 00 00 
+Encoded MaxBitRate 16000000 to 80 f4 23 ff 
+Encoded Cause Misc=115 to 42 
+Decoded Cause Misc=115
+
+==> DIRECT TRANSFER
+<RANAP_IE>
+    <id>16</id>
+    <criticality><ignore/></criticality>
+    <value>03 AA BB CC</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>59</id>
+    <criticality><ignore/></criticality>
+    <value>00</value>
+</RANAP_IE>
+00 14 00 10 00 00 02 00 10 40 04 03 aa bb cc 00 3b 40 01 00 
+
+==> SECURITY MODE COMMAND
+<RANAP_IE>
+    <id>12</id>
+    <criticality><reject/></criticality>
+    <value>
+        08 08 01 01 01 01 01 01 01 01 01 01 01 01 01 01 
+        01 01
+    </value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>11</id>
+    <criticality><ignore/></criticality>
+    <value>
+        08 90 02 02 02 02 02 02 02 02 02 02 02 02 02 02 
+        02 02
+    </value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>75</id>
+    <criticality><reject/></criticality>
+    <value>40</value>
+</RANAP_IE>
+00 06 00 34 00 00 03 00 0c 00 12 08 08 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 00 0b 40 12 08 90 02 02 02 02 02 02 02 02 02 02 02 02 02 02 02 02 00 4b 00 01 40 
+
+==> COMMON ID
+<RANAP_IE>
+    <id>23</id>
+    <criticality><ignore/></criticality>
+    <value>50 09 71 00 21 43 65 87 F9</value>
+</RANAP_IE>
+00 0f 40 10 00 00 01 00 17 40 09 50 09 71 00 21 43 65 87 f9 
+
+==> IU RELEASE CMD
+<RANAP_IE>
+    <id>4</id>
+    <criticality><ignore/></criticality>
+    <value>0B 40</value>
+</RANAP_IE>
+00 01 00 09 00 00 01 00 04 40 02 0b 40 
+
+==> PAGING CMD
+<RANAP_IE>
+    <id>3</id>
+    <criticality><ignore/></criticality>
+    <value>00</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>23</id>
+    <criticality><ignore/></criticality>
+    <value>50 09 71 00 21 43 65 87 F9</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>64</id>
+    <criticality><ignore/></criticality>
+    <value>00 01 23 45 67</value>
+</RANAP_IE>
+00 0e 00 1e 00 00 03 00 03 40 01 00 00 17 40 09 50 09 71 00 21 43 65 87 f9 00 40 40 05 00 01 23 45 67 
+
+==> RAB ASSIGNMENT COMMAND (VOICE)
+<RANAP_ProtocolIE-FieldPair>
+    <id>53</id>
+    <firstCriticality><reject/></firstCriticality>
+    <firstValue>
+        78 02 CD 80 10 2F A7 20 1A 2C 00 00 F4 4C 08 0A 
+        02 80 00 51 40 00 27 20 28 14 00 67 40 00 00 22 
+        28 14 00 3C 40 00 00 00 50 3D 02 00 02 27 C0 35 
+        00 01 0A 0B 0C 0D 00 00 00 00 00 00 00 00 00 00 
+        00 00 00 40 09 26 00 00
+    </firstValue>
+    <secondCriticality><ignore/></secondCriticality>
+    <secondValue>00</secondValue>
+</RANAP_ProtocolIE-FieldPair>
+<RANAP_IE>
+    <id>54</id>
+    <criticality><ignore/></criticality>
+    <value>
+        00 00 01 00 35 00 48 78 02 CD 80 10 2F A7 20 1A 
+        2C 00 00 F4 4C 08 0A 02 80 00 51 40 00 27 20 28 
+        14 00 67 40 00 00 22 28 14 00 3C 40 00 00 00 50 
+        3D 02 00 02 27 C0 35 00 01 0A 0B 0C 0D 00 00 00 
+        00 00 00 00 00 00 00 00 00 00 40 09 26 00 00 40 
+        01 00
+    </value>
+</RANAP_IE>
+00 00 00 59 00 00 01 00 36 40 52 00 00 01 00 35 00 48 78 02 cd 80 10 2f a7 20 1a 2c 00 00 f4 4c 08 0a 02 80 00 51 40 00 27 20 28 14 00 67 40 00 00 22 28 14 00 3c 40 00 00 00 50 3d 02 00 02 27 c0 35 00 01 0a 0b 0c 0d 00 00 00 00 00 00 00 00 00 00 00 00 00 40 09 26 00 00 40 01 00 
+
+==> RAB ASSIGNMENT COMMAND (DATA)
+<RANAP_ProtocolIE-FieldPair>
+    <id>53</id>
+    <firstCriticality><reject/></firstCriticality>
+    <firstValue>
+        38 04 12 DE 18 69 FF 80 0C 34 FF 00 1F 40 08 06 
+        08 9E 00 00 00 00 B1 40 05 60 01 8C BA 7F 00 00 
+        11 3E 35 00 01 1A 1B 1C 1D 00 00 00 00 00 00 00 
+        00 00 00 00 00 00 00 11 22 33 44
+    </firstValue>
+    <secondCriticality><ignore/></secondCriticality>
+    <secondValue>78 1C 00 00 00 00</secondValue>
+</RANAP_ProtocolIE-FieldPair>
+<RANAP_IE>
+    <id>54</id>
+    <criticality><ignore/></criticality>
+    <value>
+        00 00 01 00 35 00 3B 38 04 12 DE 18 69 FF 80 0C 
+        34 FF 00 1F 40 08 06 08 9E 00 00 00 00 B1 40 05 
+        60 01 8C BA 7F 00 00 11 3E 35 00 01 1A 1B 1C 1D 
+        00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 22 
+        33 44 40 06 78 1C 00 00 00 00
+    </value>
+</RANAP_IE>
+00 00 00 51 00 00 01 00 36 40 4a 00 00 01 00 35 00 3b 38 04 12 de 18 69 ff 80 0c 34 ff 00 1f 40 08 06 08 9e 00 00 00 00 b1 40 05 60 01 8c ba 7f 00 00 11 3e 35 00 01 1a 1b 1c 1d 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 22 33 44 40 06 78 1c 00 00 00 00 
+
+==> RESET CMD
+<RANAP_IE>
+    <id>4</id>
+    <criticality><ignore/></criticality>
+    <value>0B 40</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>3</id>
+    <criticality><reject/></criticality>
+    <value>00</value>
+</RANAP_IE>
+00 09 00 0e 00 00 02 00 04 40 02 0b 40 00 03 00 01 00 
+
+==> RESET ACK
+<RANAP_IE>
+    <id>3</id>
+    <criticality><reject/></criticality>
+    <value>00</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>86</id>
+    <criticality><ignore/></criticality>
+    <value>09 01 99 09 26</value>
+</RANAP_IE>
+20 09 00 11 00 00 02 00 03 00 01 00 00 56 40 05 09 01 99 09 26 
+
+==> INITIAL UE
+<RANAP_IE>
+    <id>3</id>
+    <criticality><ignore/></criticality>
+    <value>00</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>15</id>
+    <criticality><ignore/></criticality>
+    <value>00 09 01 99 42 23</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>58</id>
+    <criticality><ignore/></criticality>
+    <value>00 09 01 99 42 23 42 23</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>16</id>
+    <criticality><ignore/></criticality>
+    <value>03 AA BB CC</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>79</id>
+    <criticality><ignore/></criticality>
+    <value>00 00 17</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>86</id>
+    <criticality><ignore/></criticality>
+    <value>09 01 99 09 26</value>
+</RANAP_IE>
+00 13 00 36 00 00 06 00 03 40 01 00 00 0f 40 06 00 09 01 99 42 23 00 3a 40 08 00 09 01 99 42 23 42 23 00 10 40 04 03 aa bb cc 00 4f 40 03 00 00 17 00 56 40 05 09 01 99 09 26 
+
+==> IU RELEASE REQ
+<RANAP_IE>
+    <id>4</id>
+    <criticality><ignore/></criticality>
+    <value>0B 40</value>
+</RANAP_IE>
+00 0b 00 09 00 00 01 00 04 40 02 0b 40 
+
+==> RAB RELEASE REQ
+<RANAP_IE>
+    <id>40</id>
+    <criticality><ignore/></criticality>
+    <value>05 C2 D0</value>
+</RANAP_IE>
+<RANAP_IE>
+    <id>41</id>
+    <criticality><ignore/></criticality>
+    <value>00 00 01 00 28 40 03 05 C2 D0</value>
+</RANAP_IE>
+00 0a 00 11 00 00 01 00 29 40 0a 00 00 01 00 28 40 03 05 c2 d0 
+report
+talloc report on 'asn1_context' (total      0 bytes in   1 blocks)
+talloc report on 'msgb' (total      0 bytes in   1 blocks)
+exit

@@ -1,0 +1,1023 @@
+RANAP-PDU {
+itu-t (0) identified-organization (4) etsi (0) mobileDomain (0) 
+umts-Access (20) modules (3) ranap(0) version1 (1) ranap-PDU (255) }
+
+DEFINITIONS AUTOMATIC TAGS ::=
+
+BEGIN
+
+IMPORTS
+    Criticality,
+    ProcedureCode,
+    ProtocolIE-ID
+
+FROM RANAP-CommonDataTypes
+
+    Alt-RAB-Parameters,
+    Ass-RAB-Parameters,
+    Cause,
+    CN-DomainIndicator,
+    DataVolumeReference,
+    DataVolumeReportingIndication,
+    DL-GTP-PDU-SequenceNumber,
+    DL-N-PDU-SequenceNumber,
+    GERAN-Classmark,
+    GTP-TEI,
+    IPMulticastAddress,
+    IuSignallingConnectionIdentifier,
+    IuTransportAssociation,
+    MBMS-PTP-RAB-ID,
+    MBMSHCIndicator,
+    NAS-PDU,
+    NAS-SynchronisationIndicator,
+    PDP-TypeInformation,
+    RAB-ID,
+    RAB-Parameters,
+    Requested-RAB-Parameter-Values,
+    SAPI,
+    Service-Handover,
+    TMGI,
+    TransportLayerAddress,
+    UL-GTP-PDU-SequenceNumber,
+    UL-N-PDU-SequenceNumber,
+    UnsuccessfullyTransmittedDataVolume,
+    UP-ModeVersions,
+    UserPlaneMode
+
+FROM RANAP-IEs
+
+    maxnoofMulticastServicesPerUE,
+    maxNrOfIuSigConIds,
+    maxNrOfDTs,
+    maxNrOfVol,
+    maxNrOfRABs,
+    maxProtocolIEs,
+    maxProtocolExtensions
+
+FROM RANAP-Constants;
+
+RANAP-PDU ::= CHOICE {
+    initiatingMessage       InitiatingMessage,
+    successfulOutcome       SuccessfulOutcome,
+    unsuccessfulOutcome     UnsuccessfulOutcome,
+    outcome     	    Outcome,
+    ...
+}
+
+InitiatingMessage ::= SEQUENCE {
+    procedureCode   ProcedureCode,
+    criticality     Criticality,
+    value           ANY
+}
+
+SuccessfulOutcome ::= SEQUENCE {
+    procedureCode   ProcedureCode,
+    criticality     Criticality,
+    value           ANY
+}
+
+UnsuccessfulOutcome ::= SEQUENCE {
+    procedureCode   ProcedureCode,
+    criticality     Criticality,
+    value           ANY
+}
+
+Outcome ::= SEQUENCE {
+    procedureCode   ProcedureCode,
+    criticality     Criticality,
+    value           ANY
+}
+
+
+Iu-ReleaseCommand ::= SEQUENCE {
+    iu-ReleaseCommand-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+Iu-ReleaseComplete ::= SEQUENCE {
+    iu-ReleaseComplete-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationRequired ::= SEQUENCE {
+    relocationRequired-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationCommand ::= SEQUENCE {
+    relocationCommand-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationPreparationFailure ::= SEQUENCE {
+    relocationPreparationFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationRequest ::= SEQUENCE {
+    relocationRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationRequestAcknowledge ::= SEQUENCE {
+    relocationRequestAcknowledge-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationFailure ::= SEQUENCE {
+    relocationFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationCancel ::= SEQUENCE {
+    relocationCancel-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationCancelAcknowledge ::= SEQUENCE {
+    relocationCancelAcknowledge-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+SRNS-ContextRequest ::= SEQUENCE {
+    srnS-ContextRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RAB-DataForwardingList-SRNS-CtxReq ::= SEQUENCE {
+    raB-DataForwardingList-SRNS-CtxReq-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+DataVolumeReportRequest ::= SEQUENCE {
+    dataVolumeReportRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+SRNS-ContextResponse ::= SEQUENCE {
+    srnS-ContextResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+SecurityModeCommand ::= SEQUENCE {
+    securityModeCommand-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+SecurityModeComplete ::= SEQUENCE {
+    securityModeComplete-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+SecurityModeReject ::= SEQUENCE {
+    securityModeReject-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+DataVolumeReport ::= SEQUENCE {
+    dataVolumeReport-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+Reset ::= SEQUENCE {
+    reset-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+ResetAcknowledge ::= SEQUENCE {
+    resetAcknowledge-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RAB-ReleaseRequest ::= SEQUENCE {
+    raB-ReleaseRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RedirectionIndication ::= SEQUENCE {
+    redirectionIndication-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RAB-ReleaseList	::= SEQUENCE {
+	raB-ReleaseList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+Iu-ReleaseRequest ::= SEQUENCE {
+    iu-ReleaseRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationDetect ::= SEQUENCE {
+    relocationDetect-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RelocationComplete ::= SEQUENCE {
+    relocationComplete-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+Paging ::= SEQUENCE {
+    paging-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+CommonID ::= SEQUENCE {
+    commonID-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+CN-InvokeTrace ::= SEQUENCE {
+    cN-InvokeTrace-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+CN-DeactivateTrace ::= SEQUENCE {
+    cN-DeactivateTrace-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+LocationReportingControl ::= SEQUENCE {
+    locationReportingControl-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+LocationReport ::= SEQUENCE {
+    locationReport-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+InitialUE-Message ::= SEQUENCE {
+    initialUE-Message-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+DirectTransfer ::= SEQUENCE {
+    directTransfer-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+Overload ::= SEQUENCE {
+    overload-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+ErrorIndication ::= SEQUENCE {
+    errorIndication-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+SRNS-DataForwardCommand ::= SEQUENCE {
+    srnS-DataForwardCommand-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+ForwardSRNS-Context ::= SEQUENCE {
+    forwardSRNS-Context-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RAB-AssignmentRequest ::= SEQUENCE {
+    raB-AssignmentRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RAB-SetupOrModifyList 		::= RAB-IE-ContainerPairList
+
+RAB-AssignmentResponse ::= SEQUENCE {
+    raB-AssignmentResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+PrivateMessage ::= SEQUENCE {
+    privateMessage-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+ResetResource ::= SEQUENCE {
+    resetResource-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+ResetResourceAcknowledge ::= SEQUENCE {
+    resetResourceAcknowledge-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RANAP-RelocationInformation ::= SEQUENCE {
+    ranaP-RelocationInformation-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RAB-ModifyRequest ::= SEQUENCE {
+    raB-ModifyRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+LocationRelatedDataRequest ::= SEQUENCE {
+    locationRelatedDataRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+LocationRelatedDataResponse ::= SEQUENCE {
+    locationRelatedDataResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+LocationRelatedDataFailure ::= SEQUENCE {
+    locationRelatedDataFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+InformationTransferIndication ::= SEQUENCE {
+    informationTransferIndication-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+InformationTransferConfirmation ::= SEQUENCE {
+    informationTransferConfirmation-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+InformationTransferFailure ::= SEQUENCE {
+    informationTransferFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+UESpecificInformationIndication ::= SEQUENCE {
+    ueSpecificInformationIndication-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+DirectInformationTransfer ::= SEQUENCE {
+    directInformationTransfer-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+UplinkInformationExchangeRequest ::= SEQUENCE {
+    uplinkInformationExchangeRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+UplinkInformationExchangeResponse ::= SEQUENCE {
+    uplinkInformationExchangeResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+UplinkInformationExchangeFailure ::= SEQUENCE {
+    uplinkInformationExchangeFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSSessionStart ::= SEQUENCE {
+    mbmsSessionStart-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSSessionStartResponse ::= SEQUENCE {
+    mbmsSessionStartResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSSessionStartFailure ::= SEQUENCE {
+    mbmsSessionStartFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSSessionUpdate ::= SEQUENCE {
+    mbmsSessionUpdate-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSSessionUpdateResponse ::= SEQUENCE {
+    mbmsSessionUpdateResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSSessionUpdateFailure ::= SEQUENCE {
+    mbmsSessionUpdateFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSSessionStop ::= SEQUENCE {
+    mbmsSessionStop-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSSessionStopResponse ::= SEQUENCE {
+    mbmsSessionStopResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSUELinkingRequest ::= SEQUENCE {
+    mbmsueLinkingRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSUELinkingResponse ::= SEQUENCE {
+    mbmsueLinkingResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSRegistrationRequest ::= SEQUENCE {
+    mbmsRegistrationRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSRegistrationResponse ::= SEQUENCE {
+    mbmsRegistrationResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSRegistrationFailure ::= SEQUENCE {
+    mbmsRegistrationFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSCNDe-RegistrationRequest ::= SEQUENCE {
+    mbmscnDe-RegistrationRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSCNDe-RegistrationResponse ::= SEQUENCE {
+    mbmscnDe-RegistrationResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSRABEstablishmentIndication ::= SEQUENCE {
+    mbmsrabEstablishmentIndication-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSRABReleaseRequest ::= SEQUENCE {
+    mbmsrabReleaseRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSRABRelease ::= SEQUENCE {
+    mbmsrabRelease-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+MBMSRABReleaseFailure ::= SEQUENCE {
+    mbmsrabReleaseFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+EnhancedRelocationCompleteRequest ::= SEQUENCE {
+    enhancedRelocationCompleteRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+EnhancedRelocationCompleteResponse ::= SEQUENCE {
+    enhancedRelocationCompleteResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+EnhancedRelocationCompleteFailure ::= SEQUENCE {
+    enhancedRelocationCompleteFailure-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+EnhancedRelocationCompleteConfirm ::= SEQUENCE {
+    enhancedRelocationCompleteConfirm-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RANAP-EnhancedRelocationInformationRequest ::= SEQUENCE {
+    ranaP-EnhancedRelocationInformationRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+RANAP-EnhancedRelocationInformationResponse ::= SEQUENCE {
+    ranaP-EnhancedRelocationInformationResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+SRVCC-CSKeysRequest ::= SEQUENCE {
+    srvcC-CSKeysRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+SRVCC-CSKeysResponse ::= SEQUENCE {
+    srvcC-CSKeysResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+UeRadioCapabilityMatchRequest ::= SEQUENCE {
+    ueRadioCapabilityMatchRequest-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+UeRadioCapabilityMatchResponse ::= SEQUENCE {
+    ueRadioCapabilityMatchResponse-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+    ...
+}
+
+ProtocolExtensionContainer ::= SEQUENCE (SIZE (1..maxProtocolExtensions)) OF ProtocolExtensionField
+
+ProtocolExtensionField ::= SEQUENCE {
+    id ProtocolIE-ID,
+    criticality Criticality,
+    value ANY
+}
+
+IE ::= SEQUENCE {
+    id ProtocolIE-ID,
+    criticality Criticality,
+    value ANY
+}
+
+ProtocolIE-Container ::= SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE
+
+ProtocolIE-FieldPair ::= SEQUENCE {
+	id			ProtocolIE-ID,
+	firstCriticality	Criticality,
+	firstValue		ANY,
+	secondCriticality	Criticality,
+	secondValue		ANY
+}
+
+ProtocolIE-ContainerPair ::= SEQUENCE (SIZE (0..maxProtocolIEs)) OF ProtocolIE-FieldPair
+
+RAB-IE-ContainerList		::= SEQUENCE (SIZE (1..maxNrOfRABs)) OF ProtocolIE-Container
+RAB-IE-ContainerPairList	::= SEQUENCE (SIZE (1..maxNrOfRABs)) OF ProtocolIE-ContainerPair
+ProtocolError-IE-ContainerList	::= SEQUENCE (SIZE (1..maxNrOfRABs)) OF ProtocolIE-Container
+IuSigConId-IE-ContainerList	::= SEQUENCE (SIZE (1..maxNrOfIuSigConIds)) OF ProtocolIE-Container
+DirectTransfer-IE-ContainerList	::= SEQUENCE (SIZE (1..maxNrOfDTs)) OF ProtocolIE-Container
+
+DataVolumeReportList ::= SEQUENCE {
+	dataVolumeReportListe-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-ReleasedList-IuRelComp ::= SEQUENCE {
+	raB-ReleasedList-IuRelComp-ies SEQUENCE (SIZE (0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-RelocationReleaseList ::= SEQUENCE {
+	raB-RelocationReleaseList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-DataForwardingList ::= SEQUENCE {
+	raB-DataForwardingList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-SetupList-RelocReq ::= SEQUENCE {
+	raB-SetupList-RelocReq-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-SetupList-RelocReqAck ::= SEQUENCE {
+	raB-SetupList-RelocReqAck-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-FailedList ::= SEQUENCE {
+	raB-FailedList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-ContextList ::= SEQUENCE {
+	raB-ContextList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RABs-ContextFailedtoTransferList ::= SEQUENCE {
+	raBs-ContextFailedtoTransferList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-DataVolumeReportRequestList ::= SEQUENCE {
+	raB-DataVolumeReportRequestList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-DataVolumeReportRequestItem ::= SEQUENCE {
+	rAB-ID		RAB-ID,
+	iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RABs-failed-to-reportList ::= SEQUENCE {
+	raBs-failed-to-reportList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-SetupList-EnhancedRelocCompleteReq ::= SEQUENCE {
+	raB-SetupList-EnhancedRelocCompleteReq-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-SetupList-EnhancedRelocCompleteRes ::= SEQUENCE {
+	raB-SetupList-EnhancedRelocCompleteRes-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-ToBeReleasedList-EnhancedRelocCompleteRes ::= SEQUENCE {
+	raB-ToBeReleasedList-EnhancedRelocCompleteRes-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-SetupOrModifiedList ::= SEQUENCE {
+	raB-SetupOrModifiedList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-ReleasedList ::= SEQUENCE {
+	raB-ReleasedList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-QueuedList ::= SEQUENCE {
+	raB-QueuedList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-ContextList-RANAP-RelocInf ::= SEQUENCE {
+	raB-ContextList-RANAP-RelocInf-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-SetupList-EnhRelocInfoReq ::= SEQUENCE {
+	raB-SetupList-EnhRelocInfoReq-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-SetupList-EnhRelocInfoRes ::= SEQUENCE {
+	raB-SetupList-EnhRelocInfoRes-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-FailedList-EnhRelocInfoRes ::= SEQUENCE {
+	raB-FailedList-EnhRelocInfoRes-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-ModifyList ::= SEQUENCE {
+	raB-ModifyList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+RAB-DataVolumeReportList ::= SEQUENCE {
+	raB-DataVolumeReportList-ies SEQUENCE (SIZE(0..maxProtocolIEs))
+OF IE,
+	...
+}
+
+RAB-DataVolumeReportItem ::= SEQUENCE {
+	rAB-ID					RAB-ID,
+	dl-UnsuccessfullyTransmittedDataVolume	DataVolumeList		OPTIONAL
+	-- This IE shall always be present although its presence is optional --,
+	iE-Extensions ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-ReleasedItem-IuRelComp	::= SEQUENCE {
+		rAB-ID				RAB-ID,
+		dL-GTP-PDU-SequenceNumber	DL-GTP-PDU-SequenceNumber 	OPTIONAL,
+		uL-GTP-PDU-SequenceNumber	UL-GTP-PDU-SequenceNumber 	OPTIONAL,
+		iE-Extensions			ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-RelocationReleaseItem ::= SEQUENCE {
+	rAB-ID						RAB-ID,
+	iE-Extensions					ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-DataForwardingItem ::= SEQUENCE {
+	rAB-ID						RAB-ID,
+	transportLayerAddress				TransportLayerAddress,
+	iuTransportAssociation				IuTransportAssociation,
+	iE-Extensions					ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-DataForwardingItem-SRNS-CtxReq ::= SEQUENCE {
+	rAB-ID		RAB-ID,
+	iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-SetupItem-RelocReq ::= SEQUENCE {
+	rAB-ID				RAB-ID,
+	nAS-SynchronisationIndicator	NAS-SynchronisationIndicator	OPTIONAL,
+	rAB-Parameters			RAB-Parameters,
+	dataVolumeReportingIndication	DataVolumeReportingIndication 	OPTIONAL
+	-- This IE shall be present if the CN domain indicator IE is set to "PS domain" --,
+	pDP-TypeInformation		PDP-TypeInformation		OPTIONAL
+	-- This IE shall be present if the CN domain indicator IE is set to "PS domain" --,
+	userPlaneInformation		UserPlaneInformation,
+	transportLayerAddress		TransportLayerAddress,
+	iuTransportAssociation		IuTransportAssociation,
+	service-Handover		Service-Handover		OPTIONAL,
+	iE-Extensions			ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+UserPlaneInformation ::= SEQUENCE {
+	userPlaneMode		UserPlaneMode,
+	uP-ModeVersions		UP-ModeVersions,
+	iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+CNMBMSLinkingInformation ::= SEQUENCE {
+	joinedMBMSBearerService-IEs	JoinedMBMSBearerService-IEs,
+	iE-Extensions			ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+JoinedMBMSBearerService-IEs ::= SEQUENCE (SIZE (1.. maxnoofMulticastServicesPerUE)) OF
+	SEQUENCE {
+		tMGI			TMGI,
+		mBMS-PTP-RAB-ID		MBMS-PTP-RAB-ID,
+		iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+		...
+	}
+
+RAB-SetupItem-RelocReqAck ::= SEQUENCE {
+	rAB-ID			RAB-ID,
+	transportLayerAddress	TransportLayerAddress	OPTIONAL,
+	iuTransportAssociation	IuTransportAssociation	OPTIONAL,
+	iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-FailedItem ::= SEQUENCE {
+	rAB-ID		RAB-ID,
+	cause		Cause,
+	iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-ContextItem ::= SEQUENCE {
+	rAB-ID				RAB-ID,
+	dl-GTP-PDU-SequenceNumber	DL-GTP-PDU-SequenceNumber 	OPTIONAL,
+	ul-GTP-PDU-SequenceNumber	UL-GTP-PDU-SequenceNumber 	OPTIONAL,
+	dl-N-PDU-SequenceNumber		DL-N-PDU-SequenceNumber 	OPTIONAL,
+	ul-N-PDU-SequenceNumber		UL-N-PDU-SequenceNumber 	OPTIONAL,
+	iE-Extensions			ProtocolExtensionContainer	OPTIONAL,
+	...
+}
+
+RABs-ContextFailedtoTransferItem::= SEQUENCE {
+	rAB-ID		RAB-ID,
+	cause		Cause,
+	iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RABs-failed-to-reportItem::= SEQUENCE {
+	rAB-ID		RAB-ID,
+	cause		Cause,
+	iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+ResetResourceList 	::=	SEQUENCE {
+	resetResourceList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+ResetResourceItem ::= SEQUENCE {
+	iuSigConId		IuSignallingConnectionIdentifier,
+	iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+ResetResourceAckList 	::=	SEQUENCE {
+	resetResourceAckList-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+ResetResourceAckItem ::= SEQUENCE {
+	iuSigConId		IuSignallingConnectionIdentifier,
+	iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-ReleaseItem ::= SEQUENCE {
+	rAB-ID		RAB-ID,
+	cause		Cause,
+	iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-SetupItem-EnhancedRelocCompleteReq ::= SEQUENCE {
+	rAB-ID				RAB-ID,
+	transportLayerAddressReq1	TransportLayerAddress	OPTIONAL,
+	iuTransportAssociationReq1	IuTransportAssociation	OPTIONAL,
+	ass-RAB-Parameters		Ass-RAB-Parameters OPTIONAL,
+	iE-Extensions			ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-SetupItem-EnhancedRelocCompleteRes ::= SEQUENCE {
+	rAB-ID				RAB-ID,
+	rAB-Parameters			RAB-Parameters	OPTIONAL,
+	userPlaneInformation		UserPlaneInformation,
+	transportLayerAddressRes1	TransportLayerAddress	OPTIONAL,
+	iuTransportAssociationRes1	IuTransportAssociation	OPTIONAL,
+	rab2beReleasedList		RAB-ToBeReleasedList-EnhancedRelocCompleteRes OPTIONAL,
+	iE-Extensions			ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-ToBeReleasedItem-EnhancedRelocCompleteRes ::= SEQUENCE {
+	rAB-ID		RAB-ID,
+	cause		Cause,
+	iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-SetupOrModifyItemFirst ::= SEQUENCE {
+	rAB-ID				RAB-ID,
+	nAS-SynchronisationIndicator	NAS-SynchronisationIndicator	OPTIONAL,
+	rAB-Parameters			RAB-Parameters			OPTIONAL,
+	userPlaneInformation		UserPlaneInformation		OPTIONAL,
+	transportLayerInformation	TransportLayerInformation	OPTIONAL,
+	service-Handover		Service-Handover		OPTIONAL,
+	iE-Extensions			ProtocolExtensionContainer	OPTIONAL,
+	...
+}
+
+TransportLayerInformation ::= SEQUENCE {
+	transportLayerAddress	TransportLayerAddress,
+	iuTransportAssociation	IuTransportAssociation,
+	iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-SetupOrModifyItemSecond ::= SEQUENCE {
+	pDP-TypeInformation				PDP-TypeInformation 		OPTIONAL,
+	dataVolumeReportingIndication			DataVolumeReportingIndication 	OPTIONAL,
+	dl-GTP-PDU-SequenceNumber			DL-GTP-PDU-SequenceNumber 	OPTIONAL,
+	ul-GTP-PDU-SequenceNumber			UL-GTP-PDU-SequenceNumber 	OPTIONAL,
+	dl-N-PDU-SequenceNumber				DL-N-PDU-SequenceNumber 	OPTIONAL,
+	ul-N-PDU-SequenceNumber				UL-N-PDU-SequenceNumber		OPTIONAL,
+	iE-Extensions					ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-SetupOrModifiedItem ::= SEQUENCE {
+	rAB-ID			RAB-ID,
+	transportLayerAddress	TransportLayerAddress	OPTIONAL,
+	iuTransportAssociation	IuTransportAssociation	OPTIONAL,
+	dl-dataVolumes		DataVolumeList		OPTIONAL,
+	iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-ReleasedItem ::= SEQUENCE {
+	rAB-ID				RAB-ID,
+	dl-dataVolumes			DataVolumeList		OPTIONAL,
+	dL-GTP-PDU-SequenceNumber	DL-GTP-PDU-SequenceNumber			OPTIONAL,
+	uL-GTP-PDU-SequenceNumber	UL-GTP-PDU-SequenceNumber			OPTIONAL,
+	iE-Extensions			ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+DataVolumeList ::= SEQUENCE (SIZE (1..maxNrOfVol)) OF
+	SEQUENCE {
+		dl-UnsuccessfullyTransmittedDataVolume	UnsuccessfullyTransmittedDataVolume,
+		dataVolumeReference			DataVolumeReference	OPTIONAL,
+		iE-Extensions				ProtocolExtensionContainer OPTIONAL,
+		...
+	}
+
+RAB-QueuedItem ::= SEQUENCE {
+	rAB-ID		RAB-ID,
+	iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-ReleaseFailedList ::= RAB-FailedList
+
+GERAN-Iumode-RAB-Failed-RABAssgntResponse-List	::= SEQUENCE {
+	geraN-Iumode-RAB-Failed-RABAssgntResponse-List-ies SEQUENCE (SIZE(0..maxProtocolIEs)) OF IE,
+	...
+}
+
+GERAN-Iumode-RAB-Failed-RABAssgntResponse-Item ::= SEQUENCE {
+	rAB-ID		RAB-ID,
+	cause		Cause,
+	gERAN-Classmark	GERAN-Classmark		OPTIONAL,
+	iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+DirectTransferInformationItem-RANAP-RelocInf ::= SEQUENCE {
+	nAS-PDU			NAS-PDU,
+	sAPI			SAPI,
+	cN-DomainIndicator	CN-DomainIndicator,
+	iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+RAB-ContextItem-RANAP-RelocInf ::= SEQUENCE {
+	rAB-ID				RAB-ID,
+	dl-GTP-PDU-SequenceNumber	DL-GTP-PDU-SequenceNumber 	OPTIONAL,
+	ul-GTP-PDU-SequenceNumber	UL-GTP-PDU-SequenceNumber 	OPTIONAL,
+	dl-N-PDU-SequenceNumber		DL-N-PDU-SequenceNumber		OPTIONAL,
+	ul-N-PDU-SequenceNumber		UL-N-PDU-SequenceNumber		OPTIONAL,
+	iE-Extensions			ProtocolExtensionContainer	OPTIONAL,
+	...
+}
+
+RAB-SetupItem-EnhRelocInfoReq ::= SEQUENCE {
+	rAB-ID				RAB-ID,
+	cN-DomainIndicator		CN-DomainIndicator,
+	rAB-Parameters			RAB-Parameters,
+	dataVolumeReportingIndication	DataVolumeReportingIndication 	OPTIONAL
+	-- This IE shall be present if the CN domain indicator IE is set to "PS domain" --,
+	pDP-TypeInformation		PDP-TypeInformation		OPTIONAL
+	-- This IE shall be present if the CN domain indicator IE is set to "PS domain" --,
+	userPlaneInformation		UserPlaneInformation,
+	dataForwardingInformation	TNLInformationEnhRelInfoReq	OPTIONAL,
+	sourceSideIuULTNLInfo		TNLInformationEnhRelInfoReq	OPTIONAL,
+	
+	service-Handover		Service-Handover		OPTIONAL,
+	alt-RAB-Parameters		Alt-RAB-Parameters		OPTIONAL,
+	iE-Extensions			ProtocolExtensionContainer	OPTIONAL,
+	...
+}
+
+TNLInformationEnhRelInfoReq ::=SEQUENCE{
+	transportLayerAddress	TransportLayerAddress,
+	iuTransportAssociation	IuTransportAssociation,
+	iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+
+RAB-SetupItem-EnhRelocInfoRes ::= SEQUENCE {
+	cN-DomainIndicator		CN-DomainIndicator,
+	rAB-ID				RAB-ID,
+	dataForwardingInformation	TNLInformationEnhRelInfoRes	OPTIONAL,
+	ass-RAB-Parameters		Ass-RAB-Parameters		OPTIONAL,
+	iE-Extensions			ProtocolExtensionContainer	OPTIONAL,
+	...
+}
+
+RAB-FailedItem-EnhRelocInfoRes ::= SEQUENCE {
+	cN-DomainIndicator	CN-DomainIndicator,
+	rAB-ID			RAB-ID,
+	cause			Cause,
+	iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+TNLInformationEnhRelInfoRes ::=SEQUENCE{
+	dl-forwardingTransportLayerAddress	TransportLayerAddress,
+	dl-forwardingTransportAssociation	IuTransportAssociation,
+	iE-Extensions 				ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+
+-- **************************************************************
+--
+-- RAB MODIFICATION REQUEST ELEMENTARY PROCEDURE
+--
+-- **************************************************************
+
+RAB-ModifyItem ::= SEQUENCE {
+	rAB-ID				RAB-ID,
+	requested-RAB-Parameter-Values	Requested-RAB-Parameter-Values,
+	iE-Extensions			ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+MBMSSynchronisationInformation ::= SEQUENCE {
+	mBMSHCIndicator		MBMSHCIndicator,
+	iPMulticastAddress	IPMulticastAddress,
+	gTPDLTEID		GTP-TEI,
+	iE-Extensions		ProtocolExtensionContainer OPTIONAL,
+	...
+}
+
+LeftMBMSBearerService-IEs ::= SEQUENCE (SIZE (1.. maxnoofMulticastServicesPerUE)) OF
+	SEQUENCE {
+		tMGI		TMGI,
+		iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+		...
+	}
+
+UnsuccessfulLinking-IEs ::= SEQUENCE (SIZE (1.. maxnoofMulticastServicesPerUE)) OF
+	SEQUENCE {
+		tMGI		TMGI,
+		cause		Cause,
+		iE-Extensions	ProtocolExtensionContainer OPTIONAL,
+		...
+	}
+
+
+END

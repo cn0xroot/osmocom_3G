@@ -1,0 +1,5 @@
+osmo-hlr (0.0.1) UNRELEASED; urgency=low
+
+     * Initial release (Closes: OS#1948)
+
+ -- Max Suraev <msuraev@sysmocom.de>  Mon, 13 Mar 2017 16:26:41 +0200

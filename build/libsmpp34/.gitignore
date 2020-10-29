@@ -1,0 +1,14 @@
+Makefile.in
+*.o
+autom4te.cache
+aux_config
+.*.swp
+configure
+INSTALL
+Makefile
+aclocal.m4
+binaries
+config.log
+config.status
+libsmpp34.pc
+libtool

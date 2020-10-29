@@ -1,0 +1,94 @@
+test_gsup_server.c
+
+===== test_add_conn
+
+Add 10 items
+conn_inst[0].auc_3g_ind == 0
+conn_inst[1].auc_3g_ind == 1
+conn_inst[2].auc_3g_ind == 2
+conn_inst[3].auc_3g_ind == 3
+conn_inst[4].auc_3g_ind == 4
+conn_inst[5].auc_3g_ind == 5
+conn_inst[6].auc_3g_ind == 6
+conn_inst[7].auc_3g_ind == 7
+conn_inst[8].auc_3g_ind == 8
+conn_inst[9].auc_3g_ind == 9
+
+Expecting a list of 0..9
+conn[0].auc_3g_ind == 0
+conn[1].auc_3g_ind == 1
+conn[2].auc_3g_ind == 2
+conn[3].auc_3g_ind == 3
+conn[4].auc_3g_ind == 4
+conn[5].auc_3g_ind == 5
+conn[6].auc_3g_ind == 6
+conn[7].auc_3g_ind == 7
+conn[8].auc_3g_ind == 8
+conn[9].auc_3g_ind == 9
+
+Punch two holes in the sequence in arbitrary order, a larger one from 2..4 and a single one at 7.
+
+Expecting a list of 0,1, 5,6, 8,9
+conn[0].auc_3g_ind == 0
+conn[1].auc_3g_ind == 1
+conn[2].auc_3g_ind == 5
+conn[3].auc_3g_ind == 6
+conn[4].auc_3g_ind == 8
+conn[5].auc_3g_ind == 9
+
+Add conns, expecting them to take the open slots
+conn_inst[12].auc_3g_ind == 2
+conn_inst[13].auc_3g_ind == 3
+conn_inst[14].auc_3g_ind == 4
+conn_inst[17].auc_3g_ind == 7
+conn_inst[18].auc_3g_ind == 10
+
+Expecting a list of 0..10
+conn[0].auc_3g_ind == 0
+conn[1].auc_3g_ind == 1
+conn[2].auc_3g_ind == 2
+conn[3].auc_3g_ind == 3
+conn[4].auc_3g_ind == 4
+conn[5].auc_3g_ind == 5
+conn[6].auc_3g_ind == 6
+conn[7].auc_3g_ind == 7
+conn[8].auc_3g_ind == 8
+conn[9].auc_3g_ind == 9
+conn[10].auc_3g_ind == 10
+
+Does it also work for the first item?
+
+Expecting a list of 1..10
+conn[0].auc_3g_ind == 1
+conn[1].auc_3g_ind == 2
+conn[2].auc_3g_ind == 3
+conn[3].auc_3g_ind == 4
+conn[4].auc_3g_ind == 5
+conn[5].auc_3g_ind == 6
+conn[6].auc_3g_ind == 7
+conn[7].auc_3g_ind == 8
+conn[8].auc_3g_ind == 9
+conn[9].auc_3g_ind == 10
+
+Add another conn, should take auc_3g_ind == 0
+conn_inst[20].auc_3g_ind == 0
+
+Expecting a list of 0..10
+conn[0].auc_3g_ind == 0
+conn[1].auc_3g_ind == 1
+conn[2].auc_3g_ind == 2
+conn[3].auc_3g_ind == 3
+conn[4].auc_3g_ind == 4
+conn[5].auc_3g_ind == 5
+conn[6].auc_3g_ind == 6
+conn[7].auc_3g_ind == 7
+conn[8].auc_3g_ind == 8
+conn[9].auc_3g_ind == 9
+conn[10].auc_3g_ind == 10
+
+If a client reconnects, it will (likely) get the same auc_3g_ind
+conn_inst[5].auc_3g_ind == 5
+conn_inst[5].auc_3g_ind == 5
+===== test_add_conn: SUCCESS
+
+Done

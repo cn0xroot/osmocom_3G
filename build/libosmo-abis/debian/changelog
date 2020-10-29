@@ -1,0 +1,59 @@
+libosmo-abis (0.3.3) UNRELEASED; urgency=medium
+
+  * Move forward towards a new release.
+
+ -- Holger Hans Peter Freyther <holger@moiji-mobile.com>  Tue, 24 May 2016 23:02:47 +0200
+
+libosmo-abis (0.3.2) unstable; urgency=medium
+
+  * Bump so version to re-link libosmovty
+
+ -- Holger Hans Peter Freyther <holger@moiji-mobile.com>  Tue, 03 Nov 2015 09:42:01 +0100
+
+libosmo-abis (0.3.1) unstable; urgency=medium
+
+  * New upstream release of libosmo-abis
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Sun, 18 Jan 2015 19:26:40 +0100
+
+libosmo-abis (0.3.0) unstable; urgency=medium
+
+  * New upstream release of libosmo-abis
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Mon, 08 Sep 2014 07:29:39 +0200
+
+libosmo-abis (0.2.0) unstable; urgency=medium
+
+  * New upstream release of libosmo-abis
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Mon, 08 Sep 2014 07:29:19 +0200
+
+libosmo-abis (0.1.6) unstable; urgency=medium
+
+  * New upstream release of libosmo-abis
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Mon, 20 Jan 2014 10:33:36 +0100
+
+libosmo-abis (0.1.5+git1) unstable; urgency=low
+
+  * Rebuild 0.1.5 with the right libosmocore depedency
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Thu, 12 Dec 2013 11:47:01 +0100
+
+libosmo-abis (0.1.4) unstable; urgency=low
+
+  * New upstream release
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Tue, 06 Nov 2012 13:33:45 +0100
+
+libosmo-abis (0.1.3+git3-1) precise; urgency=low
+
+  * Fix version issue.
+
+ -- Eric Butler <eric@codebutler.com>  Tue, 14 Aug 2012 20:50:50 -0700
+
+libosmo-abis (0.1.3+git3) precise; urgency=low
+
+  Created new Ubuntu package.
+
+ -- Eric Butler <eric@codebutler.com>  Tue, 14 Aug 2012 13:00:18 -0700

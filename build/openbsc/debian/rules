@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DEBIAN  := $(shell dpkg-parsechangelog | grep ^Version: | cut -d' ' -f2)
+DEBVERS := $(shell echo '$(DEBIAN)' | cut -d- -f1)
+VERSION := $(shell echo '$(DEBVERS)' | sed -e 's/[+-].*//' -e 's/~//g')
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@ --sourcedirectory=openbsc --with autoreconf
+
+# This is needed for debian stable (squeeze)
+override_dh_autoreconf:
+	cd openbsc && autoreconf --install --force
+
+override_dh_strip:
+	dh_strip -posmocom-bsc --dbg-package=osmocom-bsc-dbg
+	dh_strip -posmocom-nitb --dbg-package=osmocom-nitb-dbg
+	dh_strip -posmocom-ipaccess-utils --dbg-package=osmocom-ipaccess-utils-dbg
+	dh_strip -posmocom-bs11-utils --dbg-package=osmocom-bs11-utils-dbg
+	dh_strip -posmocom-sgsn --dbg-package=osmocom-sgsn-dbg
+	dh_strip -posmocom-gbproxy --dbg-package=osmocom-gbproxy-dbg
+	dh_strip -posmocom-bsc-nat --dbg-package=osmocom-bsc-nat-dbg
+	dh_strip -posmo-gtphub --dbg-package=osmo-gtphub-dbg
+
+override_dh_auto_configure:
+	echo $(VERSION) > openbsc/.tarball-version
+	dh_auto_configure --sourcedirectory=openbsc -- --enable-nat --enable-osmo-bsc --enable-smpp
+

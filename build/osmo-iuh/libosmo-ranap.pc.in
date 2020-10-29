@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: Osmocom RANAP protocol library
+Description: C Utility Library
+Version: @VERSION@
+Libs: -L${libdir} -losmo-ranap
+Cflags: -I${includedir}/

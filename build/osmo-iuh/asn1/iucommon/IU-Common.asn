@@ -1,0 +1,45 @@
+IU-Common { }
+
+-- Humble attempt of extracting the common part of RUA, HNBAP and RANAP out of
+-- their respective ASN.1 syntax definitions.  Hidden in all those information
+-- object classes is a quite classic 'message header' structure that is identical
+-- to all of the messages of the above protocols.  Only the actual information element
+-- contents is specified as 'real' ASN.1 complex data type.
+
+DEFINITIONS AUTOMATIC TAGS ::=
+
+BEGIN
+
+maxProtocolExtensions	INTEGER ::= 65535
+maxProtocolIEs		INTEGER ::= 65535
+
+Criticality		::= ENUMERATED { reject, ignore, notify }
+
+ProcedureCode		::= INTEGER (0..255)
+
+ProtocolIE-ID		::= INTEGER (0..maxProtocolIEs)
+
+MessageType ::= ENUMERATED { initiatingMessage, successfulOutcome, unsuccessfulOutcome }
+
+ProtocolIEContainer ::= SEQUENCE (SIZE (0..maxProtocolIEs)) OF ProtocolIE-Field
+
+ProtocolExtensionContainer ::= SEQUENCE (SIZE (1..maxProtocolExtensions)) OF ProtocolIE-Field
+
+ProtocolIE-Field ::= SEQUENCE {
+	id		ProtocolIE-ID,
+	criticality	Criticality,
+	value		ANY
+}
+
+
+IUCommon-PDU ::= SEQUENCE {
+	choice			MessageType,
+	procedureCode		ProcedureCode,
+	criticality		Criticality,
+	protocolIEs		ProtocolIEContainer,
+	protocolExtensions	ProtocolExtensionContainer	OPTIONAL,
+	...
+}
+
+
+END

@@ -1,0 +1,353 @@
+
+===== test_gen_vectors_2g_only
+aud3g.u.umts.sqn == 0
+DAUC Computing 1 auth vector: 2G only
+DAUC 2G: ki = eb215756028d60e3275e613320aec880
+DAUC vector [0]: rand = 39fa2f4e3d523d8619a73b4f65c3e14d
+DAUC vector [0]: kc = 241a5b16aeb8e400
+DAUC vector [0]: sres = 429d5b27
+DAUC vector [0]: auth_types = 0x1
+rc == 1
+vector matches expectations
+aud3g.u.umts.sqn == 0
+DAUC Computing 1 auth vector: 2G only
+DAUC 2G: ki = eb215756028d60e3275e613320aec880
+DAUC vector [0]: rand = 39fa2f4e3d523d8619a73b4f65c3e14d
+DAUC vector [0]: kc = 241a5b16aeb8e400
+DAUC vector [0]: sres = 429d5b27
+DAUC vector [0]: auth_types = 0x1
+rc == 1
+vector matches expectations
+===== test_gen_vectors_2g_only: SUCCESS
+
+
+===== test_gen_vectors_2g_plus_3g
+aud3g.u.umts.sqn == 31
+DAUC Computing 1 auth vector: 3G + separate 2G
+DAUC 3G: k = eb215756028d60e3275e613320aec880
+DAUC 3G: opc = fb2a3d1b360f599abab99db8669f8308
+DAUC 3G: for sqn ind 0, previous sqn was 31
+DAUC 2G: ki = eb215756028d60e3275e613320aec880
+DAUC vector [0]: rand = 39fa2f4e3d523d8619a73b4f65c3e14d
+DAUC vector [0]: sqn = 32
+DAUC vector [0]: autn = 8704f5ba55d30000541dde77ea5b1d8c
+DAUC vector [0]: ck = f64735036e5871319c679f4742a75ea1
+DAUC vector [0]: ik = 27497388b6cb044648f396aa155b95ef
+DAUC vector [0]: res = e229c19e791f2e410000000000000000
+DAUC vector [0]: res_len = 8
+DAUC vector [0]: deriving 2G from 3G
+DAUC vector [0]: kc = 241a5b16aeb8e400
+DAUC vector [0]: sres = 429d5b27
+DAUC vector [0]: auth_types = 0x3
+rc == 1
+aud3g.u.umts.sqn == 32
+vector matches expectations
+aud3g.u.umts.sqn == 31
+DAUC Computing 1 auth vector: 3G + separate 2G
+DAUC 3G: k = eb215756028d60e3275e613320aec880
+DAUC 3G: opc = fb2a3d1b360f599abab99db8669f8308
+DAUC 3G: for sqn ind 0, previous sqn was 31
+DAUC 2G: ki = eb215756028d60e3275e613320aec880
+DAUC vector [0]: rand = 39fa2f4e3d523d8619a73b4f65c3e14d
+DAUC vector [0]: sqn = 32
+DAUC vector [0]: autn = 8704f5ba55d30000541dde77ea5b1d8c
+DAUC vector [0]: ck = f64735036e5871319c679f4742a75ea1
+DAUC vector [0]: ik = 27497388b6cb044648f396aa155b95ef
+DAUC vector [0]: res = e229c19e791f2e410000000000000000
+DAUC vector [0]: res_len = 8
+DAUC vector [0]: deriving 2G from 3G
+DAUC vector [0]: kc = 241a5b16aeb8e400
+DAUC vector [0]: sres = 429d5b27
+DAUC vector [0]: auth_types = 0x3
+rc == 1
+aud3g.u.umts.sqn == 32
+vector matches expectations
+===== test_gen_vectors_2g_plus_3g: SUCCESS
+
+
+===== test_gen_vectors_3g_only
+aud3g.u.umts.sqn == 31
+DAUC Computing 1 auth vector: 3G only (2G derived from 3G keys)
+DAUC 3G: k = eb215756028d60e3275e613320aec880
+DAUC 3G: opc = fb2a3d1b360f599abab99db8669f8308
+DAUC 3G: for sqn ind 0, previous sqn was 31
+DAUC vector [0]: rand = 39fa2f4e3d523d8619a73b4f65c3e14d
+DAUC vector [0]: sqn = 32
+DAUC vector [0]: autn = 8704f5ba55d30000541dde77ea5b1d8c
+DAUC vector [0]: ck = f64735036e5871319c679f4742a75ea1
+DAUC vector [0]: ik = 27497388b6cb044648f396aa155b95ef
+DAUC vector [0]: res = e229c19e791f2e410000000000000000
+DAUC vector [0]: res_len = 8
+DAUC vector [0]: kc = 059a4f668f6fbe39
+DAUC vector [0]: sres = 9b36efdf
+DAUC vector [0]: auth_types = 0x3
+rc == 1
+aud3g.u.umts.sqn == 32
+vector matches expectations
+aud3g.u.umts.sqn == 31
+DAUC Computing 1 auth vector: 3G only (2G derived from 3G keys)
+DAUC 3G: k = eb215756028d60e3275e613320aec880
+DAUC 3G: opc = fb2a3d1b360f599abab99db8669f8308
+DAUC 3G: for sqn ind 0, previous sqn was 31
+DAUC vector [0]: rand = 39fa2f4e3d523d8619a73b4f65c3e14d
+DAUC vector [0]: sqn = 32
+DAUC vector [0]: autn = 8704f5ba55d30000541dde77ea5b1d8c
+DAUC vector [0]: ck = f64735036e5871319c679f4742a75ea1
+DAUC vector [0]: ik = 27497388b6cb044648f396aa155b95ef
+DAUC vector [0]: res = e229c19e791f2e410000000000000000
+DAUC vector [0]: res_len = 8
+DAUC vector [0]: kc = 059a4f668f6fbe39
+DAUC vector [0]: sres = 9b36efdf
+DAUC vector [0]: auth_types = 0x3
+rc == 1
+aud3g.u.umts.sqn == 32
+vector matches expectations
+- test AUTS resync
+aud3g.u.umts.sqn == 31
+DAUC Computing 1 auth vector: 3G only (2G derived from 3G keys), with AUTS resync
+DAUC 3G: k = eb215756028d60e3275e613320aec880
+DAUC 3G: opc = fb2a3d1b360f599abab99db8669f8308
+DAUC 3G: for sqn ind 0, previous sqn was 31
+DAUC vector [0]: rand = 897210a0f7de278f0b8213098e098a3f
+DAUC vector [0]: resync: auts = 979498b1f72d3e28c59fa2e72f9c
+DAUC vector [0]: resync: rand_auts = 39fa2f4e3d523d8619a73b4f65c3e14d
+DAUC vector [0]: sqn = 24
+DAUC vector [0]: autn = c6b9790dad4b00000cf322869ea6a481
+DAUC vector [0]: ck = e9922bd036718ed9e40bd1d02c3b81a5
+DAUC vector [0]: ik = f19c20ca863137f8892326d959ec5e01
+DAUC vector [0]: res = 9af5a557902d2db80000000000000000
+DAUC vector [0]: res_len = 8
+DAUC vector [0]: kc = 7526fc13c5976685
+DAUC vector [0]: sres = 0ad888ef
+DAUC vector [0]: auth_types = 0x3
+rc == 1
+aud3g.u.umts.sqn == 24
+vector matches expectations
+- verify N vectors with AUTS resync == N vectors without AUTS
+First just set rand and sqn = 23, and compute 3 vectors
+aud3g.u.umts.sqn == 23
+DAUC Computing 3 auth vectors: 3G only (2G derived from 3G keys)
+DAUC 3G: k = eb215756028d60e3275e613320aec880
+DAUC 3G: opc = fb2a3d1b360f599abab99db8669f8308
+DAUC 3G: for sqn ind 0, previous sqn was 23
+DAUC vector [0]: rand = 897210a0f7de278f0b8213098e098a3f
+DAUC vector [0]: sqn = 24
+DAUC vector [0]: autn = c6b9790dad4b00000cf322869ea6a481
+DAUC vector [0]: ck = e9922bd036718ed9e40bd1d02c3b81a5
+DAUC vector [0]: ik = f19c20ca863137f8892326d959ec5e01
+DAUC vector [0]: res = 9af5a557902d2db80000000000000000
+DAUC vector [0]: res_len = 8
+DAUC vector [0]: kc = 7526fc13c5976685
+DAUC vector [0]: sres = 0ad888ef
+DAUC vector [0]: auth_types = 0x3
+DAUC vector [1]: rand = 9a8321b108ef38a01c93241a9f1a9b50
+DAUC vector [1]: sqn = 25
+DAUC vector [1]: autn = 79a5113eb0910000be6020540503ffc5
+DAUC vector [1]: ck = 3686f05df057d1899c66ae4eb18cf941
+DAUC vector [1]: ik = 79f21ed53bcb47787de57d136ff803a5
+DAUC vector [1]: res = 43023475cb29292c0000000000000000
+DAUC vector [1]: res_len = 8
+DAUC vector [1]: kc = aef73dd515e86c15
+DAUC vector [1]: sres = 882b1d59
+DAUC vector [1]: auth_types = 0x3
+DAUC vector [2]: rand = ab9432c2190049b12da4352bb02bac61
+DAUC vector [2]: sqn = 26
+DAUC vector [2]: autn = 24b018d46c3b00009c7e1b47f3a19b2b
+DAUC vector [2]: ck = d86c3191a36fc0602e48202ef2080964
+DAUC vector [2]: ik = 648dab72016181406243420649e63dc9
+DAUC vector [2]: res = 010cab11cc63a6e40000000000000000
+DAUC vector [2]: res_len = 8
+DAUC vector [2]: kc = f0eaf8cb19e0758d
+DAUC vector [2]: sres = cd6f0df5
+DAUC vector [2]: auth_types = 0x3
+rc == 3
+aud3g.u.umts.sqn == 26
+[0]: vector matches expectations
+[1]: vector matches expectations
+[2]: vector matches expectations
+Now reach sqn = 23 with AUTS and expect the same
+DAUC Computing 3 auth vectors: 3G only (2G derived from 3G keys), with AUTS resync
+DAUC 3G: k = eb215756028d60e3275e613320aec880
+DAUC 3G: opc = fb2a3d1b360f599abab99db8669f8308
+DAUC 3G: for sqn ind 0, previous sqn was 26
+DAUC vector [0]: rand = 897210a0f7de278f0b8213098e098a3f
+DAUC vector [0]: resync: auts = 979498b1f72d3e28c59fa2e72f9c
+DAUC vector [0]: resync: rand_auts = 39fa2f4e3d523d8619a73b4f65c3e14d
+DAUC vector [0]: sqn = 24
+DAUC vector [0]: autn = c6b9790dad4b00000cf322869ea6a481
+DAUC vector [0]: ck = e9922bd036718ed9e40bd1d02c3b81a5
+DAUC vector [0]: ik = f19c20ca863137f8892326d959ec5e01
+DAUC vector [0]: res = 9af5a557902d2db80000000000000000
+DAUC vector [0]: res_len = 8
+DAUC vector [0]: kc = 7526fc13c5976685
+DAUC vector [0]: sres = 0ad888ef
+DAUC vector [0]: auth_types = 0x3
+DAUC vector [1]: rand = 9a8321b108ef38a01c93241a9f1a9b50
+DAUC vector [1]: sqn = 25
+DAUC vector [1]: autn = 79a5113eb0910000be6020540503ffc5
+DAUC vector [1]: ck = 3686f05df057d1899c66ae4eb18cf941
+DAUC vector [1]: ik = 79f21ed53bcb47787de57d136ff803a5
+DAUC vector [1]: res = 43023475cb29292c0000000000000000
+DAUC vector [1]: res_len = 8
+DAUC vector [1]: kc = aef73dd515e86c15
+DAUC vector [1]: sres = 882b1d59
+DAUC vector [1]: auth_types = 0x3
+DAUC vector [2]: rand = ab9432c2190049b12da4352bb02bac61
+DAUC vector [2]: sqn = 26
+DAUC vector [2]: autn = 24b018d46c3b00009c7e1b47f3a19b2b
+DAUC vector [2]: ck = d86c3191a36fc0602e48202ef2080964
+DAUC vector [2]: ik = 648dab72016181406243420649e63dc9
+DAUC vector [2]: res = 010cab11cc63a6e40000000000000000
+DAUC vector [2]: res_len = 8
+DAUC vector [2]: kc = f0eaf8cb19e0758d
+DAUC vector [2]: sres = cd6f0df5
+DAUC vector [2]: auth_types = 0x3
+[0]: vector matches expectations
+[1]: vector matches expectations
+[2]: vector matches expectations
+===== test_gen_vectors_3g_only: SUCCESS
+
+
+===== test_gen_vectors_bad_args
+
+- no auth data (a)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (b)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (c)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (d)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (e)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (f)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (g)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (h)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (i)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (j)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (k)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (l)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (m)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (n)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (o)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- no auth data (p)
+DAUC auc_compute_vectors() called with neither 2G nor 3G auth data available
+rc == -1
+
+- wrong auth data type (a)
+DAUC auc_compute_vectors() called with non-2G auth data passed for aud2g arg
+rc == -1
+
+- wrong auth data type (b)
+DAUC auc_compute_vectors() called with non-2G auth data passed for aud2g arg
+rc == -1
+
+- wrong auth data type (c)
+DAUC auc_compute_vectors() called with non-2G auth data passed for aud2g arg
+rc == -1
+
+- wrong auth data type (d)
+DAUC auc_compute_vectors() called with non-2G auth data passed for aud2g arg
+rc == -1
+
+- wrong auth data type (e)
+DAUC auc_compute_vectors() called with non-3G auth data passed for aud3g arg
+rc == -1
+
+- wrong auth data type (f)
+DAUC auc_compute_vectors() called with non-3G auth data passed for aud3g arg
+rc == -1
+
+- wrong auth data type (g)
+DAUC auc_compute_vectors() called with non-3G auth data passed for aud3g arg
+rc == -1
+
+- wrong auth data type (h)
+DAUC auc_compute_vectors() called with non-3G auth data passed for aud3g arg
+rc == -1
+
+- wrong auth data type (i)
+DAUC auc_compute_vectors() called with non-2G auth data passed for aud2g arg
+rc == -1
+
+- wrong auth data type (j)
+DAUC auc_compute_vectors() called with non-2G auth data passed for aud2g arg
+rc == -1
+
+- wrong auth data type (k)
+DAUC auc_compute_vectors() called with non-3G auth data passed for aud3g arg
+rc == -1
+
+- AUTS for 2G-only (a)
+DAUC auc_compute_vectors() with AUTS called but no 3G auth data passed
+rc == -1
+
+- AUTS for 2G-only (b)
+DAUC auc_compute_vectors() with AUTS called but no 3G auth data passed
+rc == -1
+
+- AUTS for 2G-only (c)
+DAUC auc_compute_vectors() with AUTS called but no 3G auth data passed
+rc == -1
+
+- AUTS for 2G-only (d)
+DAUC auc_compute_vectors() with AUTS called but no 3G auth data passed
+rc == -1
+
+- incomplete AUTS (a)
+DAUC auc_compute_vectors() with only one of AUTS and AUTS_RAND given, need both or neither
+rc == -1
+
+- incomplete AUTS (b)
+DAUC auc_compute_vectors() with only one of AUTS and AUTS_RAND given, need both or neither
+rc == -1
+
+- incomplete AUTS (c)
+DAUC auc_compute_vectors() with only one of AUTS and AUTS_RAND given, need both or neither
+rc == -1
+
+- incomplete AUTS (d)
+DAUC auc_compute_vectors() with only one of AUTS and AUTS_RAND given, need both or neither
+rc == -1
+===== test_gen_vectors_bad_args: SUCCESS
+

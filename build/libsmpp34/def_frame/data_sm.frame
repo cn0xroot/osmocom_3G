@@ -1,0 +1,11 @@
+C_OCTET( instancia, service_type, 6 );
+    U08( instancia, source_addr_ton, str_addr_ton );
+    U08( instancia, source_addr_npi, str_addr_npi );
+C_OCTET( instancia, source_addr, ADDRESS_LENGTH );
+    U08( instancia, dest_addr_ton, str_addr_ton );
+    U08( instancia, dest_addr_npi, str_addr_npi );
+C_OCTET( instancia, destination_addr, 65 );
+    U08( instancia, esm_class, valueDec_08 );
+    U08( instancia, registered_delivery, valueDec_08 );
+    U08( instancia, data_coding, valueDec_08 );
+    TLV( instancia, tlv, do_tlv_data_sm );

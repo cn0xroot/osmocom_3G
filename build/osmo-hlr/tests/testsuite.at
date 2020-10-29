@@ -1,0 +1,23 @@
+AT_INIT
+AT_BANNER([Regression tests.])
+
+AT_SETUP([auc])
+AT_KEYWORDS([auc])
+cat $abs_srcdir/auc/auc_test.ok > expout
+cat $abs_srcdir/auc/auc_test.err > experr
+AT_CHECK([$abs_top_builddir/tests/auc/auc_test], [], [expout], [experr])
+AT_CLEANUP
+
+AT_SETUP([auc_ts_55_205_test_sets])
+AT_KEYWORDS([auc_ts_55_205_test_sets])
+cat $abs_srcdir/auc/auc_ts_55_205_test_sets.ok > expout
+cat $abs_srcdir/auc/auc_ts_55_205_test_sets.err > experr
+AT_CHECK([$abs_top_builddir/tests/auc/auc_ts_55_205_test_sets], [], [expout], [experr])
+AT_CLEANUP
+
+AT_SETUP([gsup_server])
+AT_KEYWORDS([gsup_server])
+cat $abs_srcdir/gsup_server/gsup_server_test.ok > expout
+cat $abs_srcdir/gsup_server/gsup_server_test.err > experr
+AT_CHECK([$abs_top_builddir/tests/gsup_server/gsup_server_test], [], [expout], [experr])
+AT_CLEANUP

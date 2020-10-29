@@ -1,0 +1,60 @@
+Protocols Around the Home Node B Gateway
+========================================
+
+                                 +--------+
+                             ,-->| Osmo   |
+                            /    | MGCPGW |
+                            |    |        |<--MGCP
+                            |    +--------+       \
+                            /                     |
+        +------------+<--RTP     +--------+       `->+----------+
+ UE <-->| hNodeB     |           | Osmo   |          | OsmoMSC  |        +------+
+ UE <-->| femto cell |<--Iuh---->| HNB-GW |<--IuCS-->|          |        | Osmo |
+        |            |           |        |          |     (VLR)|<-GSUP->| HLR  |
+        |            |           |        |          +----------+  GSUP->+------+
+        +------------+<--GTP-U   |        |                       /
+                              \  |        |          +------+<---'       +------+
+                              |  |        |<--IuPS-->| Osmo |<--GTP-C--->| Open |
+                              |  +--------+          | SGSN |   GTP-U--->| GGSN |
+                              |                      +------+  /         +------+
+                              \_______________________________/
+
+
+
+                      Iuh                         IuCS/IuPS
+
+NAS                   +----+----+                 +----+----+
+Non-Access Stratum    | CC | MM |                 | CC | MM |
+- - - - - - - - - - - +----+----+-------+         +----+----+
+                      | RANAP   |       |    H    | RANAP   |
+Access Stratum        +---------+ HNBAP |    N    +---------+ - - SCCP USER SAP
+                      | RUA     |       |    B    | SUA     |  \
+                      +---------+-------+    -    +---------+  |
+                      |        SCTP     |    G    | SCTP    |  } SIGTRAN
+                      +-----------------+    W    +---------+  |
+                      |        IP       |         | IP      |  /
+                      +-----------------+         +---------+
+
+
+Various SIGTRAN implementations:
+
+                IuCS/IuPS
+                  usual
+                   |     simplest
+                   |       |
+                   v       v
+  +------+------+------+-----+
+  | SCCP | SCCP |      |     |
+  +------+------+ SCCP |     |
+  | MTP3 | MTP3 |      |     |
+  +------+------+------+ SUA |
+  | MTP2 |      |      |     |
+  +------+ M2UA | M3UA |     |
+  | M2PA |      |      |     |
+  +------+------+------+-----+
+  |           SCTP           |
+  +--------------------------+
+  |            IP            |
+  +--------------------------+
+
+UE (User Endpoint) == MS (Mobile Subscriber) == mobile device

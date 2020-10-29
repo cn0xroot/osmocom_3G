@@ -1,0 +1,35 @@
+Testing the IPA layer.
+Testing IPA recv with complete messages.
+got IPA message, size=10, proto=200, text="Hello IPA"
+got IPA message, size=86, proto=200, text="A longer test message. ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz"
+got IPA message, size=16, proto=200, text="Hello again IPA"
+got IPA message, size=1, proto=200, text=""
+got IPA message, size=14, proto=200, text="Next is empty"
+got msg == NULL, returned: Resource temporarily unavailable
+got IPA message, size=4, proto=200, text="Bye"
+got IPA message, size=4, proto=200, text="Bye"
+done: unread 0, unsent 0
+Testing IPA recv with partitioned messages.
+ipa_msg_recv_buffered failed with: Input/output error
+done: unread 0, unsent 154
+Testing IPA recv with complete messages with assembling enabled.
+got IPA message, size=10, proto=200, text="Hello IPA"
+got IPA message, size=86, proto=200, text="A longer test message. ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz"
+got IPA message, size=16, proto=200, text="Hello again IPA"
+got IPA message, size=1, proto=200, text=""
+got IPA message, size=14, proto=200, text="Next is empty"
+got msg == NULL, pending_msg == NULL, returned: Resource temporarily unavailable
+got IPA message, size=4, proto=200, text="Bye"
+got IPA message, size=4, proto=200, text="Bye"
+done: unread 0, unsent 0
+Testing IPA recv with partitioned messages with assembling enabled.
+got IPA message, size=10, proto=200, text="Hello IPA"
+got IPA message, size=86, proto=200, text="A longer test message. ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz"
+got IPA message, size=16, proto=200, text="Hello again IPA"
+got IPA message, size=1, proto=200, text=""
+got IPA message, size=14, proto=200, text="Next is empty"
+got msg == NULL, pending_msg == NULL, returned: Resource temporarily unavailable
+got IPA message, size=4, proto=200, text="Bye"
+got IPA message, size=4, proto=200, text="Bye"
+done: unread 0, unsent 0
+No crashes.

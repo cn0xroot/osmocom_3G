@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config>
+    <conn_tcp host="127.0.0.1" port="9090" src_addr="127.0.0.1" src_port="6666"/>
+    <conn_smpp system_id="sytem" password="asdfg34" system_type="type01"/>
+    <smpp_msg src="5565" dst="0911110000" msg="Este es un ejemplo 01"/>
+</config>

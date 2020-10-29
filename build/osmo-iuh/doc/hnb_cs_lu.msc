@@ -1,0 +1,45 @@
+msc {
+	hscale = "3";
+	ue,hnb,hnbgw,cn;
+
+	ue box hnb	[ label = "Radio Channel Establishment" ];
+	ue => hnb 	[ label = "RRC (MM LOC UPD REQ)" ] ;
+	hnb => hnbgw 	[ label = "RUA CONNECT (RANAP Initial UE Msg (MM LOC UPD REQ))" ];
+	hnbgw => cn	[ label = "SCCP CR (RANAP Initial UE Msg (MM LOC UPD REQ))" ];
+	cn >> hnbgw	[ label = "SCCP CC" ];
+
+	---		[ label = "Optional retrieval of IMSI (if not given in LU or retrived from VLR by TMSI)" ];
+	cn => hnbgw	[ label = "SCCP DT1 (RANAP DirectTransfer (MM IDENTITY REQ))" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP DirectTransfer (MM IDENTITY REQ))" ];
+	hnb => ue	[ label = "RRC (MM IDENTITY REQ)" ];
+	ue >> hnb	[ label = "RRC (MM IDENTITY RESP)" ];
+	hnb >> hnbgw	[ label = "RUA DT (RANAP DirectTransfer (MM IDENTITY RESP))" ];
+	hnbgw >> cn	[ label = "SCCP DT1 (RANAP DirectTransfer (MM IDENTITY RESP))" ];
+
+	---		[ label = "Mandatory activation of Integrity Protection" ];
+	cn => hnbgw	[ label = "SCCP DT1 (RANAP SecurityModeCommand (IK))" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP SecurityModeCommand (IK))" ];
+	hnb >> hnbgw	[ label = "RUA DT (RANAP SecurityModeResponse (IK))" ];
+	hnbgw >> cn	[ label = "SCCP DT1 (RANAP SecurityModeResponse (IK))" ];
+
+	cn => hnbgw	[ label = "SCCP DT1 (RANAP CommonID)" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP CommonID)" ];
+
+	---		[ label = "Optional Authentication" ];
+	cn => hnbgw	[ label = "SCCP DT1 (RANAP DirectTransfer (MM AUTH REQ))" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP DirectTransfer (MM AUTH REQ))" ];
+	hnb => ue	[ label = "RRC (MM AUTH REQ)" ];
+	ue >> hnb	[ label = "RRC (MM AUTH RESP)" ];
+	hnb >> hnbgw	[ label = "RUA DT (RANAP DirectTransfer (MM AUTH RESP))" ];
+	hnbgw >> cn	[ label = "SCCP DT1 (RANAP DirectTransfer (MM AUTH RESP))" ];
+
+	---		[ label = "Optional activation of Encryption" ];
+	cn => hnbgw	[ label = "SCCP DT1 (RANAP SecurityModeCommand (IK+CK))" ];
+	hnbgw => hnb	[ label = "RUA DT (RANAP SecurityModeCommand (IK+CK))" ];
+	hnb >> hnbgw	[ label = "RUA DT (RANAP SecurityModeResponse (IK+CK))" ];
+	hnbgw >> cn	[ label = "SCCP DT1 (RANAP SecurityModeResponse (IK+CK))" ];
+
+	cn >> hnbgw	[ label = "SCCP DT1 (RANAP DirectTransfer (MM LOC UPD ACC))" ];
+	hnbgw >> hnb	[ label = "RUA DT (RANAP DirectTransfer (MM LOC UPD ACC))" ];
+	hnb >> ue	[ label = "RRC (MM LOC UPD ACC)" ];
+}

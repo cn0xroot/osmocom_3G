@@ -1,0 +1,3 @@
+U08( instancia, dest_flag, valueDec_08 );
+UU2( instancia, value, 21 );
+DAD( instancia, next, do_dad );

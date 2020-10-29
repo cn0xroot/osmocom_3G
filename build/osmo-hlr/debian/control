@@ -1,0 +1,35 @@
+Source: osmo-hlr
+Section: net
+Priority: optional
+Maintainer: Max Suraev <msuraev@sysmocom.de>
+Build-Depends: debhelper (>= 9),
+               pkg-config,
+               dh-autoreconf,
+               dh-systemd (>= 1.5),
+               autotools-dev,
+               pkg-config,
+               python3,
+               libosmocore-dev,
+               libosmo-abis-dev,
+               libosmo-netif-dev,
+               libdbd-sqlite3,
+               libsqlite3-dev
+Standards-Version: 3.9.6
+Vcs-Browser: http://cgit.osmocom.org/osmo-hlr
+Vcs-Git: git://git.osmocom.org/osmo-hlr
+Homepage: https://projects.osmocom.org/projects/osmo-hlr
+
+Package: osmo-hlr
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libdbd-sqlite3
+Description: Osmocom Home Location Register
+ OsmoHLR is a Osmocom implementation of HLR (Home Location Registrar) which works over GSUP
+ protocol. The subscribers are store in sqlite DB. It supports both 2G and 3G authentication.
+
+Package: osmo-hlr-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: osmo-hlr (= ${binary:Version}), ${misc:Depends}
+Description: Debug symbols for the osmo-hlr
+ Make debugging possible

@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+
+DEBIAN  := $(shell dpkg-parsechangelog | grep ^Version: | cut -d' ' -f2)
+DEBVERS := $(shell echo '$(DEBIAN)' | cut -d- -f1)
+VERSION := $(shell echo '$(DEBVERS)' | sed -e 's/[+-].*//' -e 's/~//g')
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#export DH_VERBOSE=1
+
+
+%:
+	dh $@ --with autoreconf --fail-missing
+
+override_dh_strip:
+	dh_strip --dbg-package=libosmo-abis-dbg
+
+override_dh_autoreconf:
+	echo $(VERSION) > .tarball-version
+	dh_autoreconf
+
+override_dh_clean:
+	dh_clean
+	rm -f tests/package.m4 tests/testsuite .version .tarball-version

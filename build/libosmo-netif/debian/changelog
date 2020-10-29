@@ -1,0 +1,41 @@
+libosmo-netif (0.0.7) UNRELEASED; urgency=medium
+
+  * Move forward toward a new release.
+
+ -- Holger Hans Peter Freyther <holger@moiji-mobile.com>  Tue, 24 May 2016 23:06:33 +0200
+
+libosmo-netif (0.0.6) unstable; urgency=medium
+
+  * Drop libosmovty dependency.
+
+ -- Holger Hans Peter Freyther <holger@moiji-mobile.com>  Tue, 03 Nov 2015 09:36:32 +0100
+
+libosmo-netif (0.0.5) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Holger Hans Peter Freyther <holger@moiji-mobile.com>  Sun, 23 Aug 2015 18:01:53 +0200
+
+libosmo-netif (0.0.3) unstable; urgency=medium
+
+  * Bump API due the AMR header structure now being packed
+    and potentially having different storage requirements.
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Mon, 28 Apr 2014 20:50:18 +0200
+
+libosmo-netif (0.0.2-z6) unstable; urgency=low
+
+  * Upgrade with increased test coverage.
+  * More changes
+  * Fix use after free issue.
+  * Fix osmux_snprintf for multiple batched messages
+  * Clean-ups.
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Sat, 25 May 2013 09:42:30 +0200
+
+libosmo-netif (0.0.2-z1) testing; urgency=low
+
+  * Initial release.
+  * Post 0.0.2
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Tue, 21 May 2013 18:53:08 +0200

@@ -1,0 +1,11 @@
+#define do_dad( inst_dad )\
+U08( inst_dad->, dest_flag, test_dest_flag ); \
+if( inst_dad-> dest_flag == DFID_SME_Address ){ \
+    U08( inst_dad-> value. sme. , dest_addr_ton, str_addr_ton ); \
+    U08( inst_dad-> value. sme. , dest_addr_npi, str_addr_npi ); \
+    C_OCTET( inst_dad-> value. sme. , destination_addr, 21  ); \
+} else if( inst_dad-> dest_flag == DFID_Distribution_List_Name ){\
+    C_OCTET( inst_dad-> value. , dl_name, 21 ); \
+} else {\
+};
+

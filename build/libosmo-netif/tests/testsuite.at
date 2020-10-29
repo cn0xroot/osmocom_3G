@@ -1,0 +1,8 @@
+AT_INIT
+AT_BANNER([Regression tests.])
+
+AT_SETUP([osmux_test])
+AT_KEYWORDS([osmux_test])
+cat $abs_srcdir/osmux/osmux_test.ok > expout
+AT_CHECK([$abs_top_builddir/tests/osmux/osmux_test], [0], [expout], [ignore])
+AT_CLEANUP

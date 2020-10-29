@@ -1,0 +1,83 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: libosmocore
+Source: git://git.osmocom.org/libosmo-abis.git
+
+Files: *
+Copyright: 2008      Daniel Willmann <daniel@totalueberwachung.de>
+           2008-2012 Harald Welte <laforge@gnumonks.org>
+           2009-2010 Holger Hans Peter Freyther <zecke@selfish.org>
+           2010,2014 On-Waves
+           2011-2014 Pablo Neira Ayuso <pablo@gnumonks.org>
+           2012      Tobias Engel
+           2014      Sysmocom s.f.m.c. GmBH
+License: AGPL-3+
+
+Files: src/input/lapd.c
+       src/trau/osmo_ortp.c
+       src/input/dahdi.c
+Copyright: 2008-2011 Harald Welte <laforge@gnumonks.org>
+           2009      oystein@homelien.no
+           2009      Holger Hans Peter Freyther <zecke@selfish.org>
+           2010      Digium and Matthew Fredrickson <creslin@digium.com>
+           2011      Andreas Everberg <jolly@eversberg.eu>
+License: GPL-2+
+
+Files: include/mISDNif.h
+Copyright: 2008 Karsten Keil <kkeil@novell.com>
+License: LGPL-2.1
+
+Files: debian/*
+Copyright: 2012 Eric Butler <eric@codebutler.com>
+           2012-2015 Holger Hans Peter Freyther <holger@moiji-mobile.com>
+           2015 Ruben Undheim <ruben.undheim@gmail.com>
+License: AGPL-3+
+
+
+License: AGPL-3+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+License: GPL-2+
+ This package is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: LGPL-2.1
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation;
+ version 2.1 of the License.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU Lesser General
+ Public License version 2.1 can be found in "/usr/share/common-licenses/LGPL-2.1".

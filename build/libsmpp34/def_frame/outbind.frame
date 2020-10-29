@@ -1,0 +1,2 @@
+C_OCTET( instancia, system_id, 16 );
+C_OCTET( instancia, password, 9 );

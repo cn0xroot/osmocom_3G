@@ -1,0 +1,2 @@
+C_OCTET( instancia, system_id, 16 );
+    TLV( instancia, tlv, do_tlv_bind_transmitter_resp );

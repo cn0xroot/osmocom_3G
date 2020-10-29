@@ -1,0 +1,42 @@
+openggsn (0.93) UNRELEASED; urgency=medium
+
+  * Bump version to ease upgrading from Debian SID.
+  * Bump libgtp SO version after ABI change.
+
+ -- Holger Hans Peter Freyther <holger@moiji-mobile.com>  Tue, 24 Jan 2017 17:26:26 +0100
+
+openggsn (0.92) precise; urgency=medium
+
+  * Release 0.92
+
+ -- Holger Hans Peter Freyther <holger@moiji-mobile.com>  Mon, 30 Nov 2015 14:05:59 +0100
+
+openggsn (0.91+git34) precise; urgency=medium
+
+  * Non-maintainer upload.
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Tue, 23 Sep 2014 16:38:32 +0200
+
+openggsn (0.91+git33) precise; urgency=low
+
+  * Fix init script.
+
+ -- Eric Butler <eric@codebutler.com>  Fri, 24 Aug 2012 21:15:32 -0700
+
+openggsn (0.91+git33) precise; urgency=low
+
+  * Update package for Ubuntu Precise.
+
+ -- Eric Butler <eric@codebutler.com>  Tue, 14 Aug 2012 16:48:59 -0700
+
+openggsn (0.91-2) unstable; urgency=low
+
+  * Switch to source/format (git)
+
+ -- Harald Welte <laforge@gnumonks.org>  Tue, 10 May 2011 17:31:37 +0200
+
+openggsn (0.91-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Harald Welte <laforge@gnumonks.org>  Tue, 24 Aug 2010 11:23:40 +0200

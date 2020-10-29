@@ -1,0 +1,59 @@
+libosmo-sccp (0.7.1) UNRELEASED; urgency=medium
+
+  * Move forward towards a new release.
+
+ -- Holger Hans Peter Freyther <holger@moiji-mobile.com>  Tue, 24 May 2016 22:57:59 +0200
+
+libosmo-sccp (0.7.0) unstable; urgency=medium
+
+  * New release.
+
+ -- Holger Hans Peter Freyther <holger@moiji-mobile.com>  Sat, 01 Aug 2015 20:12:05 +0200
+
+libosmo-sccp (0.0.6.5) unstable; urgency=medium
+
+  * Non-maintainer upload.
+
+ --  Holger Hans Peter Freyther <holger@freyther.de>  Thu, 16 Apr 2015 21:16:25 +0200
+
+libosmo-sccp (0.0.6.4) unstable; urgency=medium
+
+  * Bump the version due the package changes.
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Sat, 14 Mar 2015 19:47:20 +0100
+
+libosmo-sccp (0.0.6.3) unstable; urgency=low
+
+  * New upstream release 0.0.6.3.
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Tue, 06 Nov 2012 13:24:14 +0100
+
+libosmo-sccp (0.0.6.2+git2-1) precise; urgency=low
+
+  * Fix version issue.
+
+ -- Eric Butler <eric@codebutler.com>  Tue, 14 Aug 2012 20:52:45 -0700
+
+libosmo-sccp (0.0.6.2+git2) precise; urgency=low
+
+  * Update debian package.
+
+ -- Eric Butler <eric@codebutler.com>  Tue, 14 Aug 2012 17:08:14 -0700
+
+libosmo-sccp (0.0.5) unstable; urgency=low
+
+  * New upstream release 0.0.5 
+
+ -- Harald Welte <laforge@gnumonks.org>  Tue, 10 May 2011 17:30:34 +0200
+
+libosmo-sccp (0.0.3) natty; urgency=low
+
+  * New upstream release with 0.0.3 and more.
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Thu, 13 Jan 2011 18:16:25 +0800
+
+libosmo-sccp (0.0.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Harald Welte <laforge@gnumonks.org>  Tue, 24 Aug 2010 14:08:42 +0200

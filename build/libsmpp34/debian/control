@@ -1,0 +1,59 @@
+Source: libsmpp34
+Maintainer: Holger Freyther <holger@moiji-mobile.com>
+Section: libs
+Priority: optional
+Build-Depends: debhelper (>= 9),
+               autotools-dev,
+               autoconf,
+               automake,
+               libtool,
+               dh-autoreconf,
+               libdpkg-perl,
+               git,
+               pkg-config,
+               libxml2-dev
+Standards-Version: 3.9.6
+Vcs-Browser: http://git.osmocom.org/gitweb?p=libosmocore.git;a=summary
+Vcs-Git: git://git.osmocom.org/libosmocore.git
+Homepage: https://projects.osmocom.org/projects/libsmpp34
+
+Package: libsmpp0
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Description: Open PDU SMPP packaging and unpackaging tool
+ This library is an implementation for providing the PDU handling of the
+ SMPP-3.4 protocol. SMPP (Short Message Peer-to-Peer) is an open industry
+ standard protocol designed to provide a flexible data communication
+ interface for the transfer of short message data between External Short
+ Messaging Entities, Routing Entitites and Message Centres.
+
+Package: libsmpp34-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: libsmpp0 (= ${binary:Version}),
+         ${misc:Depends}
+Description: Development files for libsmpp34
+ This library is an implementation for providing the PDU handling of the
+ SMPP-3.4 protocol. SMPP (Short Message Peer-to-Peer) is an open industry
+ standard protocol designed to provide a flexible data communication
+ interface for the transfer of short message data between External Short
+ Messaging Entities, Routing Entitites and Message Centres.
+ .
+ This package contains the development files for the library.
+
+Package: libsmpp34-utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Utilities for SMPP
+
+Package: libsmpp34-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: libsmpp0 (= ${binary:Version}), ${misc:Depends}
+Description: Debug symbols for libsmpp34

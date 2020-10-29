@@ -1,0 +1,81 @@
+= Specs =
+
+* TS 25.467: Home Node B Stage 2 (high level overview)
+** Figure 7.2.1 shows the protocol stack
+* TS 25.468: RUA (RANAP User Adaption), ASN.1 "SCCP Like" layer
+* TS 25.469: HNBAP signalling
+* TS 25.444: Iuh data transport (UDP/RTP/GTP use)
+* TS 25.413: RANAP
+
+
+= Protocols =
+
+h2. RANAP
+
+ASN1, BASIC-PER aligned
+
+h3. Classes of Elementary Procedures
+
+* Class 1: EPs with response (success and/or failure)
+* Class 2: EPs without response
+* Class 3: EPs with possibility of multiple responses
+
+h3. Functions 
+
+* Paging
+* Common ID management
+* Transport of NAS information
+* Security Mode Control
+* Radio Access Bearer (RAB) Management
+* Iu release
+* Relocating Serving RNC (SRNC)
+* Overload management
+* Reset
+* Location reporting
+* Data volume reporting
+
+h3. Procedures
+
+* Paging
+* Initial UE Message
+* Common ID (tie IMSI of UE to RRC connection)
+* Direct Transfer (like LAPDm)
+* Security Mode Control
+* RAB Assignment (CN->RAN)
+* Iu Release (CN->RAN, clear a connection to a UE)
+* Iu Release Request (RAN->CN, request release)
+* 
+
+
+
+== HNBAP ==
+
+ASN1, BASIC-PER aligned
+
+* HNB registration
+** HNB REGISTER REQ/ACC/REK
+** HNB DE-REGISTER
+* UE registration
+** UE REG/ACC/REJ
+** UE DE-REGISTER
+* RNSAP relocation
+** TNL UPD REQ/RESP/REJ
+** HNB CFG XFER REQ/RESP
+* error handling
+** ERROR IND
+
+
+
+* SABP
+* PCAP
+
+= SCTP adaption layers
+
+== RUA ==
+
+ASN1, BASIC-PER aligned
+
+* one association for each UE
+* CONNECT / TRANSFER / DISCONNECT / CONNECTIONLESS TRANSFER / ERROR
+
+== PUA ==

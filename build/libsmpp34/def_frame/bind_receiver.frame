@@ -1,0 +1,7 @@
+C_OCTET( instancia, system_id, 16 );
+C_OCTET( instancia, password, 9 );
+C_OCTET( instancia, system_type, 13 );
+    U08( instancia, interface_version, valueDec_08 );
+    U08( instancia, addr_ton, str_addr_ton );
+    U08( instancia, addr_npi, str_addr_npi );
+C_OCTET( instancia, address_range, 41 );

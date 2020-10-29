@@ -1,0 +1,4 @@
+C_OCTET( instancia, message_id, 65 );
+C_OCTET( instancia, final_date, 17 );
+    U08( instancia, message_state, valueDec_08 );
+    U08( instancia, error_code, valueDec_08 );

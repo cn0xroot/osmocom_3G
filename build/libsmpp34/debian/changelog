@@ -1,0 +1,17 @@
+libsmpp34 (1.11) UNRELEASED; urgency=medium
+
+  * Move forward towards a new release.
+
+ -- Holger Hans Peter Freyther <holger@moiji-mobile.com>  Tue, 24 May 2016 23:07:49 +0200
+
+libsmpp34 (1.10z1) stable; urgency=low
+
+  * Add depedency from libsmpp34-dev to the main library
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Tue, 24 Sep 2013 13:33:45 +0200
+
+libsmpp34 (1.10) stable; urgency=low
+
+  * Initial release.
+
+ -- Holger Hans Peter Freyther <holger@freyther.de>  Sun, 22 Sep 2013 14:34:19 +0200

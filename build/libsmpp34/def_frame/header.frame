@@ -1,0 +1,4 @@
+U32( instancia, command_length , valueDec_32          );
+U32( instancia, command_id     , str_command_id       );
+U32( instancia, command_status , str_command_status   );
+U32( instancia, sequence_number, test_sequence_number );
